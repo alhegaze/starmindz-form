@@ -1,0 +1,3992 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STAR MINDZ'26 — Registration Form</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    .post-box {
+      background: rgba(0, 232, 118, 0.03);
+      border: 1px dashed rgba(0, 232, 118, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: start;
+    }
+
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .post-content {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.6;
+      white-space: pre-wrap;
+      /* يحافظ على تنسيق السطور */
+      user-select: all;
+      /* يسهل التحديد اليدوي أيضاً */
+    }
+
+    .copy-tag {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: all 0.2s;
+    }
+
+    .copy-tag:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 232, 118, 0.3);
+    }
+
+    :root {
+      --navy: #000000;
+      --navy2: #0D1A0F;
+      --accent: #00E876;
+      --gold: #00C4FF;
+      --white: #FFFFFF;
+      --gray: #7A8F80;
+      --border: #1A3020;
+      --green: #00E876;
+      --input-bg: #0A1A0C;
+      --font-ar: 'IBM Plex Sans Arabic', sans-serif;
+      --font-en: 'Syne', sans-serif;
+      --radius: 14px;
+      --g1: #00E876;
+      --g2: #00C4FF;
+      --g3: #00FF8A
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: none
+    }
+
+    html::-webkit-scrollbar {
+      display: none
+    }
+
+    body {
+      background: #000;
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: var(--font-ar);
+      scrollbar-width: none
+    }
+
+    body::-webkit-scrollbar {
+      display: none
+    }
+
+    /* ── ANIMATED GRADIENT BG ── */
+    * {
+      scrollbar-width: none
+    }
+
+    *::-webkit-scrollbar {
+      display: none
+    }
+
+    .grad-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0;
+      background: #000;
+    }
+
+    /* base dark layer */
+    .grad-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 130% 90% at 50% 50%, #001a08 0%, #000 65%);
+    }
+
+    .grad-orb {
+      position: absolute;
+      border-radius: 50%;
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    /* orb 1 — large green, top-left, slow drift */
+    .grad-orb:nth-child(1) {
+      width: 75vw;
+      height: 75vw;
+      max-width: 750px;
+      max-height: 750px;
+      background: radial-gradient(circle, rgba(0, 232, 118, .28) 0%, transparent 65%);
+      filter: blur(90px);
+      top: -25%;
+      left: -20%;
+      animation: orbDrift1 18s ease-in-out infinite;
+    }
+
+    /* orb 2 — cyan, bottom-right, medium */
+    .grad-orb:nth-child(2) {
+      width: 65vw;
+      height: 65vw;
+      max-width: 650px;
+      max-height: 650px;
+      background: radial-gradient(circle, rgba(0, 196, 255, .2) 0%, transparent 65%);
+      filter: blur(90px);
+      bottom: -20%;
+      right: -15%;
+      animation: orbDrift2 14s ease-in-out infinite;
+    }
+
+    /* orb 3 — light green, center, soft pulse */
+    .grad-orb:nth-child(3) {
+      width: 45vw;
+      height: 45vw;
+      max-width: 450px;
+      max-height: 450px;
+      background: radial-gradient(circle, rgba(0, 255, 138, .12) 0%, transparent 65%);
+      filter: blur(80px);
+      top: 30%;
+      left: 40%;
+      animation: orbDrift3 10s ease-in-out infinite;
+    }
+
+    /* orb 4 — extra teal pulse, right-center (new) */
+    .grad-orb:nth-child(4) {
+      width: 35vw;
+      height: 35vw;
+      max-width: 350px;
+      max-height: 350px;
+      background: radial-gradient(circle, rgba(0, 220, 180, .12) 0%, transparent 65%);
+      filter: blur(70px);
+      top: 10%;
+      right: 5%;
+      animation: orbDrift4 12s ease-in-out infinite;
+    }
+
+    /* beam — faster, wider sweep */
+    .grad-beam {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 65%;
+      background: linear-gradient(to top, rgba(0, 232, 118, .3) 0%, rgba(0, 196, 255, .1) 50%, transparent 100%);
+      filter: blur(50px);
+      will-change: opacity, transform;
+      animation: beamPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes beamPulse {
+
+      0%,
+      100% {
+        opacity: .25;
+        transform: translateX(-50%) scaleX(1)
+      }
+
+      50% {
+        opacity: .65;
+        transform: translateX(-50%) scaleX(1.8)
+      }
+    }
+
+    @keyframes orbDrift1 {
+      0% {
+        transform: translate(0, 0) scale(1)
+      }
+
+      20% {
+        transform: translate(55vw, 15vh) scale(1.05)
+      }
+
+      40% {
+        transform: translate(70vw, 60vh) scale(.95)
+      }
+
+      60% {
+        transform: translate(30vw, 80vh) scale(1.08)
+      }
+
+      80% {
+        transform: translate(-5vw, 40vh) scale(.97)
+      }
+
+      100% {
+        transform: translate(0, 0) scale(1)
+      }
+    }
+
+    @keyframes orbDrift2 {
+      0% {
+        transform: translate(0, 0) scale(1)
+      }
+
+      25% {
+        transform: translate(-60vw, -20vh) scale(1.06)
+      }
+
+      50% {
+        transform: translate(-40vw, -70vh) scale(.94)
+      }
+
+      75% {
+        transform: translate(10vw, -40vh) scale(1.04)
+      }
+
+      100% {
+        transform: translate(0, 0) scale(1)
+      }
+    }
+
+    @keyframes orbDrift3 {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: .8
+      }
+
+      30% {
+        transform: translate(-30vw, 35vh) scale(1.1);
+        opacity: 1
+      }
+
+      60% {
+        transform: translate(40vw, -50vh) scale(.9);
+        opacity: .7
+      }
+
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: .8
+      }
+    }
+
+    @keyframes orbDrift4 {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: .6
+      }
+
+      35% {
+        transform: translate(-50vw, 50vh) scale(1.12);
+        opacity: 1
+      }
+
+      65% {
+        transform: translate(20vw, 70vh) scale(.88);
+        opacity: .65
+      }
+
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: .6
+      }
+    }
+
+    /* ── LANG SCREEN ── */
+    #lang-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      backdrop-filter: none;
+      transition: opacity .4s, transform .4s;
+      direction: ltr;
+      /* always LTR so layout never flips */
+    }
+
+    #lang-screen.out {
+      opacity: 0;
+      transform: scale(1.06);
+      pointer-events: none
+    }
+
+    .ls-modal {
+      background: rgba(8, 20, 12, .92);
+      border: 1px solid rgba(0, 232, 118, .18);
+      border-radius: 24px;
+      padding: 40px 36px 36px;
+      width: min(480px, 92vw);
+      text-align: center;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .6), 0 0 0 1px rgba(0, 232, 118, .06);
+    }
+
+    .ls-globe {
+      font-size: 36px;
+      margin-bottom: 12px;
+      display: block;
+      filter: drop-shadow(0 0 12px rgba(0, 232, 118, .4))
+    }
+
+    .ls-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 28px;
+      color: var(--white);
+      letter-spacing: -.3px;
+      font-family: var(--font-en);
+    }
+
+    .ls-title span {
+      font-family: var(--font-ar)
+    }
+
+    .ls-options {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+      direction: ltr
+    }
+
+    .ls-opt {
+      flex: 1;
+      padding: 20px 16px;
+      border-radius: 16px;
+      cursor: pointer;
+      border: 2px solid rgba(0, 232, 118, .12);
+      background: rgba(0, 232, 118, .03);
+      transition: all .2s;
+    }
+
+    .ls-opt:hover {
+      border-color: rgba(0, 232, 118, .35);
+      background: rgba(0, 232, 118, .07);
+      transform: translateY(-2px)
+    }
+
+    .ls-opt.selected {
+      border-color: var(--accent);
+      background: rgba(0, 232, 118, .1)
+    }
+
+    .ls-opt-flag {
+      font-size: 28px;
+      margin-bottom: 8px;
+      display: block
+    }
+
+    .ls-opt-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white)
+    }
+
+    .ls-opt.en-opt .ls-opt-name {
+      font-family: var(--font-en)
+    }
+
+    .ls-opt.ar-opt .ls-opt-name {
+      font-family: var(--font-ar)
+    }
+
+    .ls-confirm {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #000;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all .25s;
+      font-family: var(--font-en);
+    }
+
+    .ls-confirm:hover {
+      background: #00ff8a;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(0, 232, 118, .4)
+    }
+
+    /* ── FORM WRAPPER ── */
+    .form-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+      position: relative;
+      z-index: 1
+    }
+
+    /* ── DIRECTION CONTROL ── */
+    [dir="rtl"] .form-wrapper {
+      direction: rtl;
+      text-align: right
+    }
+
+    [dir="ltr"] .form-wrapper {
+      direction: ltr;
+      text-align: left
+    }
+
+    /* ── PROGRESS ── */
+    /* ── PROGRESS BAR — Glassmorphism ── */
+    .pgbar-outer {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      margin: 0 -16px;
+      padding: 0 16px;
+    }
+
+    /* glass pill */
+    .pgbar-inner {
+      background: rgba(0, 0, 0, .45);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(0, 232, 118, .12);
+      border-radius: 0 0 20px 20px;
+      padding: 10px 18px 14px;
+      box-shadow: 0 4px 32px rgba(0, 0, 0, .4), 0 0 0 0.5px rgba(0, 232, 118, .06) inset;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle shimmer line at top */
+    .pgbar-inner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 232, 118, .3), rgba(0, 196, 255, .2), transparent);
+    }
+
+    .pginfo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, .45);
+      letter-spacing: .3px;
+    }
+
+    .pglabel {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: .5px;
+      text-transform: uppercase
+    }
+
+    .pgtrack {
+      height: 3px;
+      background: rgba(255, 255, 255, .06);
+      border-radius: 99px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pgfill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      border-radius: 99px;
+      transition: width .5s cubic-bezier(.4, 0, .2, 1);
+      position: relative;
+    }
+
+    /* ── COVER ── */
+    /* body revealed after lang pick */
+    body.lang-revealed .grad-bg {
+      animation: bgReveal .8s ease forwards
+    }
+
+    @keyframes bgReveal {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    body.lang-revealed::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: #000;
+      animation: bgFade .8s ease forwards;
+    }
+
+    @keyframes bgFade {
+      from {
+        opacity: 1
+      }
+
+      to {
+        opacity: 0;
+        pointer-events: none
+      }
+    }
+
+    #step-cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      gap: 28px;
+      transition: opacity .35s, transform .35s
+    }
+
+    #step-cover.fade-out {
+      opacity: 0;
+      transform: translateY(-16px);
+      pointer-events: none
+    }
+
+    .cover-star {
+      font-size: 52px;
+      animation: pulse 2s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(0, 232, 118, .5))
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.1)
+      }
+    }
+
+    .cover-title {
+      font-family: var(--font-en);
+      font-size: clamp(30px, 7vw, 46px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--white) 30%, var(--accent) 70%, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1
+    }
+
+    .cover-sub {
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-family: var(--font-en);
+      opacity: .7
+    }
+
+    .cover-desc {
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(255, 255, 255, .65);
+      max-width: 440px
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .cm-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--gray)
+    }
+
+    .cm-item strong {
+      color: var(--white)
+    }
+
+    .btn-start {
+      padding: 15px 48px;
+      border-radius: var(--radius);
+      font-size: 16px;
+      font-weight: 700;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      cursor: pointer;
+      transition: all .25s;
+      font-family: inherit
+    }
+
+    .btn-start:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 232, 118, .45)
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: rgba(0, 232, 118, .04);
+      border: 1px solid rgba(0, 232, 118, .12);
+      border-radius: 20px;
+      padding: 32px 24px 28px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px)
+    }
+
+    .sec-tag {
+      display: inline-block;
+      background: rgba(0, 232, 118, .1);
+      border: 1px solid rgba(0, 232, 118, .25);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 99px;
+      margin-bottom: 10px;
+      font-family: var(--font-en)
+    }
+
+    .sec-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .sec-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 4px
+    }
+
+    /* ── FIELDS ── */
+    .field {
+      margin-bottom: 18px;
+      position: relative
+    }
+
+    .flabel {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 9px;
+      color: rgba(255, 255, 255, .85)
+    }
+
+    .req {
+      color: var(--accent);
+      margin-inline-start: 3px
+    }
+
+    .fhint {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 7px;
+      line-height: 1.55
+    }
+
+    .ferr {
+      font-size: 12px;
+      margin-top: 6px;
+      display: none;
+      line-height: 1.55;
+      background: rgba(255, 80, 80, .07);
+      border: 1px solid rgba(255, 80, 80, .25);
+      border-radius: 8px;
+      padding: 7px 11px;
+      color: rgba(255, 180, 180, .9);
+      animation: errIn .25s ease;
+    }
+
+    .ferr.show {
+      display: block
+    }
+
+    .ferr::before {
+      content: '⚠ ';
+      font-size: 11px
+    }
+
+    .ferr.is-hint {
+      background: rgba(0, 232, 118, .06);
+      border-color: rgba(0, 232, 118, .2);
+      color: rgba(180, 255, 210, .85);
+    }
+
+    .ferr.is-hint::before {
+      content: '💡 '
+    }
+
+    .finline-tip {
+      font-size: 12px;
+      background: rgba(0, 232, 118, .06);
+      border: 1px solid rgba(0, 232, 118, .2);
+      border-radius: 8px;
+      padding: 7px 11px;
+      margin-top: 8px;
+      color: rgba(180, 255, 210, .85);
+      display: none;
+      line-height: 1.55;
+    }
+
+    .finline-tip.show {
+      display: block
+    }
+
+    .finline-tip::before {
+      content: '💡 ';
+      font-size: 11px
+    }
+
+    .finline-tip.no-icon::before {
+      display: none
+    }
+
+    @keyframes errIn {
+      from {
+        opacity: 0;
+        transform: translateY(-4px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=url],
+    input[type=number],
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(0, 232, 118, .04);
+      border: 1.5px solid rgba(0, 232, 118, .15);
+      border-radius: 10px;
+      color: var(--white);
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(122, 143, 128, .6)
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 232, 118, .1)
+    }
+
+    input.input-ok {
+      border-color: var(--green)
+    }
+
+    select option {
+      background: #0a1a0c
+    }
+
+    /* ── NAME ROW ── */
+    .name-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 18px
+    }
+
+    .name-row .field {
+      margin-bottom: 0
+    }
+
+    .name-hint-full {
+      grid-column: 1/-1
+    }
+
+    @media(max-width:480px) {
+      .name-row {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* ── PHONE ── */
+    /* ── PHONE: fixed LTR layout regardless of page direction ── */
+    .phone-row {
+      display: flex;
+      gap: 10px;
+      direction: ltr;
+      align-items: stretch
+    }
+
+    .phone-country-wrap {
+      flex-shrink: 0
+    }
+
+    .phone-country-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+      min-width: 155px;
+      height: 100%;
+      background: rgba(0, 232, 118, .04);
+      border: 1.5px solid rgba(0, 232, 118, .15);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all .2s;
+      box-sizing: border-box;
+    }
+
+    .phone-country-btn:hover,
+    .phone-country-btn.open {
+      border-color: var(--accent);
+      background: rgba(0, 232, 118, .08)
+    }
+
+    .pcb-flag {
+      font-size: 18px;
+      flex-shrink: 0
+    }
+
+    .pcb-name {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .75);
+      flex: 1;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .pcb-chevron {
+      font-size: 10px;
+      color: var(--gray);
+      transition: transform .2s;
+      flex-shrink: 0;
+      margin-left: 4px
+    }
+
+    .phone-country-btn.open .pcb-chevron {
+      transform: rotate(180deg)
+    }
+
+    .phone-input-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: rgba(0, 232, 118, .04);
+      border: 1.5px solid rgba(0, 232, 118, .15);
+      border-radius: 10px;
+      transition: border-color .2s, box-shadow .2s;
+      direction: ltr;
+      overflow: hidden;
+    }
+
+    .phone-input-wrap:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 232, 118, .1)
+    }
+
+    .phone-code-prefix {
+      padding: 0 2px 0 14px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      font-family: 'Syne', sans-serif;
+      white-space: nowrap;
+      flex-shrink: 0;
+      letter-spacing: .5px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .phone-input-real {
+      flex: 1;
+      padding: 13px 14px 13px 2px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 15px;
+      font-family: 'Syne', sans-serif;
+      outline: none;
+      letter-spacing: .5px;
+      direction: ltr;
+    }
+
+    .phone-input-real::placeholder {
+      color: rgba(122, 143, 128, .5)
+    }
+
+    .phone-country-list {
+      position: fixed;
+      width: 260px;
+      background: rgba(8, 20, 12, .97);
+      border: 1px solid rgba(0, 232, 118, .2);
+      border-radius: 12px;
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 99999;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .7);
+      display: none;
+      scrollbar-width: none;
+      animation: dropIn .18s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .phone-country-list.show {
+      display: block
+    }
+
+    @keyframes dropIn {
+      from {
+        opacity: 0;
+        transform: translateY(-6px) scale(.97)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+    }
+
+    .pcl-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background .15s;
+      font-size: 14px
+    }
+
+    .pcl-item:hover {
+      background: rgba(0, 232, 118, .08)
+    }
+
+    .pcl-item .pci-flag {
+      font-size: 20px;
+      flex-shrink: 0
+    }
+
+    .pcl-item .pci-name {
+      flex: 1;
+      color: rgba(255, 255, 255, .8)
+    }
+
+    .pcl-item .pci-code {
+      color: var(--accent);
+      font-family: var(--font-en);
+      font-size: 13px
+    }
+
+    /* ── CHIPS (unified) ── */
+    .city-row,
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 2px
+    }
+
+    .city-chip,
+    .chip {
+      padding: 10px 18px;
+      border-radius: 99px;
+      background: rgba(0, 232, 118, .04);
+      border: 1.5px solid rgba(0, 232, 118, .15);
+      font-size: 14px;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all .2s;
+      user-select: none;
+      display: inline-flex;
+      align-items: center
+    }
+
+    .city-chip.active,
+    .chip.active {
+      background: rgba(0, 232, 118, .12);
+      border-color: var(--accent);
+      color: var(--white);
+      font-weight: 600
+    }
+
+    .other-city,
+    .other-box {
+      margin-top: 12px;
+      display: none
+    }
+
+    .other-city.show,
+    .other-box.show {
+      display: block
+    }
+
+    /* ── UPLOAD ── */
+    .upload-zone {
+      border: 2px dashed rgba(0, 232, 118, .2);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+      display: block
+    }
+
+    .upload-zone:hover {
+      border-color: var(--accent);
+      background: rgba(0, 232, 118, .04)
+    }
+
+    .upload-zone input[type=file] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%
+    }
+
+    .uicon {
+      font-size: 32px;
+      margin-bottom: 8px
+    }
+
+    .ulabel {
+      font-size: 14px;
+      color: var(--gray)
+    }
+
+    .ulabel strong {
+      color: var(--accent)
+    }
+
+    .upreview {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 12px auto 0;
+      border: 2px solid var(--accent);
+      display: none
+    }
+
+    .upreview.show {
+      display: block
+    }
+
+    /* ── CAREER CARDS ── */
+    .career-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    @media(max-width:420px) {
+      .career-cards {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .ccard {
+      background: rgba(0, 232, 118, .03);
+      border: 2px solid rgba(0, 232, 118, .12);
+      border-radius: 16px;
+      padding: 20px 16px;
+      cursor: pointer;
+      text-align: center;
+      transition: all .25s
+    }
+
+    .ccard:hover {
+      border-color: rgba(0, 232, 118, .45);
+      transform: translateY(-2px);
+      background: rgba(0, 232, 118, .06)
+    }
+
+    .ccard.active {
+      border-color: var(--accent);
+      background: rgba(0, 232, 118, .1)
+    }
+
+    .ccard-icon {
+      font-size: 28px;
+      margin-bottom: 10px
+    }
+
+    .ccard-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px
+    }
+
+    .ccard-desc {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.5
+    }
+
+    /* ── RADIO ── */
+    .radio-grp {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .radio-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      background: rgba(0, 232, 118, .03);
+      border: 1.5px solid rgba(0, 232, 118, .12);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .radio-item:hover {
+      border-color: rgba(0, 232, 118, .35)
+    }
+
+    .radio-item.active {
+      border-color: var(--accent);
+      background: rgba(0, 232, 118, .07)
+    }
+
+    .radio-item input[type=radio] {
+      display: none
+    }
+
+    .rdot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 232, 118, .3);
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all .2s
+    }
+
+    .radio-item.active .rdot {
+      border-color: var(--accent);
+      background: var(--accent);
+      box-shadow: inset 0 0 0 3px #000
+    }
+
+    .rtxt {
+      font-size: 14px
+    }
+
+    /* ── REVIEW ── */
+    .review-grp {
+      margin-bottom: 24px
+    }
+
+    .review-grp-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-family: var(--font-en)
+    }
+
+    .review-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0, 232, 118, .07);
+      gap: 16px
+    }
+
+    .review-row:last-child {
+      border-bottom: none
+    }
+
+    .rkey {
+      font-size: 13px;
+      color: var(--gray);
+      flex-shrink: 0
+    }
+
+    .rval {
+      font-size: 14px;
+      font-weight: 600;
+      text-align: end;
+      word-break: break-word;
+      font-family: var(--font-en)
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .25s;
+      border: none;
+      width: 100%
+    }
+
+    .btn-p {
+      background: var(--accent);
+      color: #000
+    }
+
+    /* زر الإلغاء الاحترافي (أحمر) */
+    .btn-danger {
+      background: #FF4B4B;
+      /* لون أحمر مودرن */
+      color: #ffffff !important;
+      /* لون النص أبيض صريح */
+      box-shadow: 0 4px 15px rgba(255, 75, 75, 0.2);
+    }
+
+    .btn-danger:hover {
+      background: #E63946;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 75, 75, 0.4);
+    }
+
+    .btn-p:hover {
+      background: #00ff8a;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(0, 232, 118, .4)
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #000
+    }
+
+    .btn-gold:hover {
+      background: #00d4ff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(0, 196, 255, .35)
+    }
+
+    .btn-row {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn-row>* {
+      flex: 1;
+      /* هذا السطر يجعل الزرين متساويين في الحجم تماماً */
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .25s;
+      border: none;
+      background: #FF4B4B;
+      /* لون أحمر عصري واحترافي */
+      color: #ffffff;
+      font-family: inherit;
+      order: -1;
+      /* هذا السطر السحري هو ما يعكس مكان الزر تلقائياً حسب اللغة! */
+    }
+
+    .btn-back:hover {
+      background: #E63946;
+      /* لون أحمر أغمق عند مرور الماوس */
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(255, 75, 75, 0.35);
+      color: #ffffff;
+    }
+
+    /* ── SUCCESS ── */
+    #step-success {
+      padding: 40px 0;
+      text-align: center
+    }
+
+    /* ── VIRAL CARD ── */
+    .vtitle {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px
+    }
+
+    .vdesc {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 20px;
+      line-height: 1.6
+    }
+
+    .canvas-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      max-width: 360px;
+      background: var(--navy)
+    }
+
+    #viralCanvas {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .vedit {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      max-width: 360px;
+      margin-inline: auto
+    }
+
+    .vedit input {
+      font-size: 14px;
+      padding: 10px 14px
+    }
+
+    .vfrow {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
+    .vfrow .tog {
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      cursor: pointer;
+      color: var(--gray);
+      font-size: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all .2s
+    }
+
+    .vfrow .tog:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .vfrow .tog.off {
+      border-color: rgba(255, 255, 255, .1);
+      color: rgba(255, 255, 255, .2);
+      text-decoration: line-through
+    }
+
+    .size-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      max-width: 360px;
+      margin-inline: auto
+    }
+
+    .sbns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      max-width: 360px;
+      margin: 0 auto 8px
+    }
+
+    .sbn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all .25s
+    }
+
+    .sbn-dl {
+      background: var(--gold);
+      color: var(--navy)
+    }
+
+    .sbn-fb {
+      background: #1877F2;
+      color: #fff
+    }
+
+    .sbn-li {
+      background: #0A66C2;
+      color: #fff
+    }
+
+    .sbn-ig {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff
+    }
+
+    .ig-note {
+      font-size: 11px;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 6px;
+      line-height: 1.5
+    }
+
+    /* ── STEP ANIMATIONS ── */
+    .step {
+      display: none
+    }
+
+    .step.active {
+      display: block;
+      opacity: 1
+    }
+
+    .step.active:not(#step-cover) {
+      padding-top: 20px
+    }
+
+    .step.anim-in {
+      animation: stepIn .3s ease-out forwards;
+      will-change: opacity, transform;
+    }
+
+    .step.anim-out {
+      animation: stepOut .2s ease-in forwards;
+      pointer-events: none;
+      will-change: opacity, transform;
+    }
+
+    @keyframes stepIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes stepOut {
+      from {
+        opacity: 1;
+        transform: translateY(0)
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(-8px)
+      }
+    }
+
+    /* light stagger — 3 tiers only, GPU-only properties */
+    .step.anim-in .card .field,
+    .step.anim-in .card .name-row,
+    .step.anim-in .card .radio-grp,
+    .step.anim-in .card .career-cards,
+    .step.anim-in .card .chips,
+    .step.anim-in .card .city-row,
+    .step.anim-in .card .btn-row {
+      animation: fieldIn .28s ease-out both;
+    }
+
+    .step.anim-in .card .sec-desc,
+    .step.anim-in .card .rnote {
+      animation: fieldIn .22s ease-out both
+    }
+
+    /* tier 1 — first fields */
+    .step.anim-in .card .field:nth-child(1),
+    .step.anim-in .card .name-row {
+      animation-delay: .04s
+    }
+
+    /* tier 2 — middle */
+    .step.anim-in .card .field:nth-child(2),
+    .step.anim-in .card .field:nth-child(3),
+    .step.anim-in .card .radio-grp,
+    .step.anim-in .card .career-cards {
+      animation-delay: .1s
+    }
+
+    /* tier 3 — rest */
+    .step.anim-in .card .field:nth-child(n+4),
+    .step.anim-in .card .chips,
+    .step.anim-in .card .city-row,
+    .step.anim-in .card .btn-row {
+      animation-delay: .16s
+    }
+
+    @keyframes fieldIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* chip tap pulse */
+    .city-chip,
+    .chip {
+      transition: all .18s cubic-bezier(.34, 1.56, .64, 1)
+    }
+
+    .city-chip:active,
+    .chip:active {
+      transform: scale(.95);
+      opacity: .85
+    }
+
+    /* card hover lift */
+    .ccard {
+      transition: all .22s cubic-bezier(.34, 1.2, .64, 1)
+    }
+
+    .ccard:hover {
+      transform: translateY(-4px) scale(1.01)
+    }
+
+    .ccard:active {
+      transform: scale(.98);
+      opacity: .9
+    }
+
+    /* radio tap */
+    .radio-item {
+      transition: all .18s ease
+    }
+
+    .radio-item:active {
+      transform: scale(.985)
+    }
+
+    /* button press */
+    .btn:active {
+      transform: scale(.97) !important
+    }
+
+    .btn-start:active {
+      transform: scale(.97) !important
+    }
+
+    /* focus pulse removed for performance */
+
+    /* progress bar number pop */
+    @keyframes numPop {
+      0% {
+        opacity: .5;
+        transform: scale(1.15)
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+    }
+
+    .pg-pop {
+      animation: numPop .22s ease-out
+    }
+
+    .sec-tag {
+      animation: tagFade .3s ease both
+    }
+
+    .sec-title {
+      animation: tagFade .3s ease .04s both
+    }
+
+    @keyframes tagFade {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    /* success page */
+    .sicon {
+      animation: pop .5s cubic-bezier(.34, 1.56, .64, 1)
+    }
+
+    .stitle {
+      animation: stepIn .3s ease-out .1s both
+    }
+
+    .sdesc {
+      animation: stepIn .3s ease-out .18s both
+    }
+
+    .viral-sec {
+      animation: stepIn .3s ease-out .28s both
+    }
+
+    /* upload zone hover */
+    .upload-zone {
+      transition: border-color .18s, background .18s
+    }
+
+    .upload-zone:hover {
+      background: rgba(0, 232, 118, .04);
+      border-color: rgba(0, 232, 118, .4)
+    }
+
+    /* particles removed for performance */
+
+    /* ── LANG MODAL OPTION ── */
+    .ls-opt {
+      transition: all .22s cubic-bezier(.34, 1.2, .64, 1)
+    }
+
+    .ls-opt.selected {
+      animation: optSelect .28s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    @keyframes optSelect {
+      0% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.04)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .ls-opt:active {
+      transform: scale(.96)
+    }
+
+    .ls-confirm {
+      transition: all .22s cubic-bezier(.34, 1.2, .64, 1)
+    }
+
+    .ls-confirm:active {
+      transform: scale(.97)
+    }
+
+    /* ── COVER STAR GLOW PULSE ── */
+    .cover-star {
+      filter: drop-shadow(0 0 16px rgba(0, 232, 118, .4));
+      animation: starGlow 2.5s ease-in-out infinite;
+    }
+
+    @keyframes starGlow {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 12px rgba(0, 232, 118, .35));
+        transform: scale(1)
+      }
+
+      50% {
+        filter: drop-shadow(0 0 28px rgba(0, 232, 118, .65));
+        transform: scale(1.08)
+      }
+    }
+
+    .load-ov {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 26, 46, .92);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      gap: 16px
+    }
+
+    .load-ov.show {
+      display: flex
+    }
+
+    .spin {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .loadtxt {
+      font-size: 14px;
+      color: var(--gray)
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--navy2);
+      border: 1px solid var(--border);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      z-index: 9000;
+      transition: transform .3s;
+      white-space: nowrap;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .35)
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0)
+    }
+
+    .toast.ok {
+      border-color: var(--green)
+    }
+
+    .toast.err {
+      border-color: var(--accent)
+    }
+
+    .rnote {
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 24px;
+      margin-top: 6px
+    }
+
+    .rnote .req {
+      color: var(--accent)
+    }
+
+    /* ── DEVELOPED VIRAL CARD CSS ── */
+    .viral-sec {
+      background: rgba(0, 232, 118, 0.03);
+      border: 1px solid rgba(0, 232, 118, 0.15);
+      border-radius: 24px;
+      padding: clamp(16px, 4vw, 32px);
+    }
+
+    .card-html-wrap {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin: 20px auto;
+      /* لجعل حواف الكارد دائرية مثل باقي الموقع */
+      border-radius: 12px;
+      border: 1px solid rgba(0, 232, 118, 0.2);
+      background: #000;
+      aspect-ratio: 2414 / 1080;
+    }
+
+    #sm-card {
+      width: 2414px;
+      height: 1080px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: 0 0;
+      background: #000;
+      direction: ltr;
+    }
+
+    /* مكان الصورة الشخصية داخل الدائرة الداخلية بالظبط */
+    #sm-photo-container {
+      position: absolute;
+      top: 142px;
+      right: 213px;
+      width: 612px;
+      height: 612px;
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* حاوية النصوص أسفل الصورة الشخصية */
+    #text-area-wrapper {
+      position: absolute;
+      top: 815px;
+      /* المسافة من فوق (ظبطها زي ما تحب) */
+
+      /* الحسبة السحرية للسنتر */
+      width: 900px;
+      /* عرض الصندوق (خليناه عريض عشان الاسم ميتكسرش) */
+      right: 69px;
+      /* الرقم ده محسوب عشان يخلي سنتر الـ 900 بكسل هو نفسه سنتر الصورة */
+
+      /* التأكد من توسيط الكلام جوه الصندوق */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* توسيط المحتوى أفقيًا */
+      justify-content: center;
+      z-index: 10;
+      pointer-events: none;
+      /* عشان ميغطيش على أي أزرار لو نزل تحتها */
+    }
+
+    #sm-name-disp {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 35px;
+      /* تم تصغير الحجم ليطابق الديزاين */
+      font-weight: 500;
+      color: #0d1a0f;
+      margin-bottom: 5px;
+      text-align: center;
+      width: 100%;
+      white-space: nowrap;
+    }
+
+    #sm-role-disp {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 32px;
+      /* تم تصغير الحجم ليطابق الديزاين */
+      font-weight: 400;
+      color: #0d1a0f;
+      opacity: 0.85;
+      text-align: center;
+      line-height: 1.2;
+      white-space: nowrap;
+      text-align: center;
+      /* توسيط النص */
+      width: 100%;
+      /* ياخد عرض الصندوق كله */
+    }
+
+    /* نافذة الاقتصاص الاحترافية */
+    #crop-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* الكارت الخاص بالاقتصاص */
+    #crop-card {
+      background: #08140c;
+      border: 1.5px solid rgba(0, 232, 118, 0.2);
+      border-radius: 28px;
+      width: 100%;
+      max-width: 450px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    /* منطقة الرؤية (الدائرة) */
+    #crop-viewport {
+      width: 280px;
+      height: 280px;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      border: 3px solid var(--accent);
+      background: #000;
+      cursor: move;
+      touch-action: none;
+      /* لمنع اهتزاز الصفحة في الموبايل */
+    }
+
+    #crop-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    /* شريط التكبير (Zoom Bar) */
+    /* شكل حاوية الزوم المودرن (كبسولة زجاجية) */
+    .zoom-wrap {
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(0, 232, 118, 0.05);
+      padding: 10px 18px;
+      border-radius: 99px;
+      border: 1px solid rgba(0, 232, 118, 0.15);
+      backdrop-filter: blur(5px);
+    }
+
+    /* أزرار الزوم الدائرية المضيئة */
+    .zoom-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: rgba(0, 232, 118, 0.1);
+      color: var(--accent);
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      user-select: none;
+      line-height: 0;
+    }
+
+    .zoom-btn:hover {
+      background: var(--accent);
+      color: #000;
+      transform: scale(1.15) rotate(90deg);
+      /* أنميشن دوران خفيف */
+      box-shadow: 0 0 20px rgba(0, 232, 118, 0.5);
+    }
+
+    .zoom-btn:active {
+      transform: scale(0.9);
+    }
+
+    /* تجميل شكل شريط السحب (Slider) */
+
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 232, 118, 0.6);
+      border: 3px solid #08140c;
+      transition: transform 0.2s;
+    }
+
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .zoom-wrap span {
+      font-size: 18px;
+      color: var(--gray);
+    }
+
+    input[type=range] {
+      flex: 1;
+      accent-color: var(--accent);
+      cursor: pointer;
+      height: 6px;
+    }
+
+    /* تعديل زر الإخفاء ليصبح احترافياً */
+    .tog {
+      background: rgba(0, 232, 118, 0.1) !important;
+      border: 1.5px solid var(--accent) !important;
+      color: var(--accent) !important;
+      border-radius: 10px !important;
+      padding: 10px 18px !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tog:hover {
+      background: var(--accent) !important;
+      color: #000 !important;
+    }
+
+    .tog.off {
+      opacity: 0.4;
+      border-color: var(--gray) !important;
+      color: var(--gray) !important;
+    }
+
+    /* إصلاح شامل للخطوط في كل الموقع */
+    body,
+    input,
+    select,
+    textarea,
+    button {
+      font-family: var(--font-ar);
+      /* الافتراضي عربي */
+    }
+
+    [dir="ltr"] body,
+    [dir="ltr"] input,
+    [dir="ltr"] button,
+    .en-font {
+      font-family: 'Syne', sans-serif !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ANIMATED BG -->
+  <div class="grad-bg">
+    <div class="grad-orb"></div>
+    <div class="grad-orb"></div>
+    <div class="grad-orb"></div>
+    <div class="grad-orb"></div>
+    <div class="grad-beam"></div>
+  </div>
+
+  <!-- LANG SCREEN -->
+  <div id="lang-screen">
+    <div class="ls-modal">
+      <span class="ls-globe">🌐</span>
+      <div class="ls-title"><span>اختر اللغة</span> / Choose Language</div>
+      <!-- direction:ltr hardcoded so Arabic is ALWAYS right, English ALWAYS left -->
+      <div class="ls-options" style="direction:ltr">
+        <div class="ls-opt en-opt" id="ls-opt-en" onclick="selectLangOpt('en')">
+          <span class="ls-opt-flag">🇬🇧</span>
+          <div class="ls-opt-name">English</div>
+        </div>
+        <div class="ls-opt ar-opt selected" id="ls-opt-ar" onclick="selectLangOpt('ar')">
+          <span class="ls-opt-flag">🇪🇬</span>
+          <div class="ls-opt-name">العربية</div>
+        </div>
+      </div>
+      <button class="ls-confirm" id="ls-confirm-btn" onclick="confirmLang()"><span id="ls-btn-text">التالي</span> <span
+          id="ls-btn-arrow">←</span></button>
+    </div>
+  </div>
+
+  <div class="load-ov" id="lov">
+    <div class="spin"></div>
+    <div class="loadtxt" id="ltxt">جاري التسجيل...</div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <div class="form-wrapper">
+    <!-- PROGRESS -->
+    <div class="pgbar-outer" id="pgbar" style="display:none">
+      <div class="pgbar-inner">
+        <div class="pginfo">
+          <span class="pglabel" id="pglb"></span>
+          <span id="pgcnt" style="font-family:'Syne',sans-serif;font-weight:600">1 / 5</span>
+        </div>
+        <div class="pgtrack">
+          <div class="pgfill" id="pgf" style="width:10%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COVER -->
+    <div id="step-cover" class="step">
+      <div
+        style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;gap:28px">
+        <div class="cover-star">★</div>
+        <div>
+          <div class="cover-sub">Cairo, Egypt — 24 April 2026</div>
+          <div class="cover-title">STAR MINDZ'26<br>Registration Form</div>
+        </div>
+        <div class="cover-desc" data-t="cover_desc"></div>
+        <div class="cover-meta">
+          <div class="cm-item">📅 <strong id="cover-date">24 أبريل 2026</strong></div>
+          <div class="cm-item">📍 <strong data-t="city_cairo"></strong></div>
+          <div class="cm-item">🎟️ <strong data-t="free_label"></strong></div>
+        </div>
+        <button class="btn-start" onclick="startForm()" data-t="start_btn" id="start-btn-el"></button>
+        <button onclick="switchLang()" id="lang-switch-btn"
+          style="background:none;border:1.5px solid var(--border);border-radius:99px;color:var(--gray);font-size:13px;padding:8px 20px;cursor:pointer;font-family:inherit;transition:all .2s"
+          data-t="lang_switch_btn"></button>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div id="step-1" class="step">
+      <div class="card">
+        <div class="sec-tag">Section 01</div>
+        <div class="sec-title" data-t="sec1_title"></div>
+        <div class="sec-desc" data-t="sec1_desc"></div>
+        <div class="rnote" style="margin-top:12px"><span class="req">*</span> <span data-t="req_note"></span></div>
+
+        <!-- Full Name Field -->
+        <div class="field">
+          <label class="flabel"><span data-t="fullname"></span><span class="req">*</span></label>
+          <input type="text" id="full-name" data-t="fullname_ph" placeholder=""
+            style="direction:ltr; font-family:'Syne',sans-serif" autocomplete="name" name="name"
+            oninput="checkNameInput(this,'tip-full','e-full')">
+          <div class="finline-tip" id="tip-full"></div>
+          <div class="ferr" id="e-full" data-t="err_fullname"></div>
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <label class="flabel"><span data-t="email"></span><span class="req">*</span></label>
+          <input type="email" id="em" data-t="email_ph" placeholder="" style="direction:ltr" autocomplete="email"
+            name="email" oninput="liveValidateEmail(this)">
+          <div class="ferr" id="em-hint" style="display:none"></div>
+          <div class="ferr" id="e-em"></div>
+        </div>
+
+        <!-- Phone -->
+        <div class="field">
+          <label class="flabel"><span data-t="phone"></span><span class="req">*</span></label>
+          <div class="finline-tip show" data-t="phone_hint" style="margin-bottom:10px"></div>
+          <div class="phone-row">
+            <div class="phone-country-wrap">
+              <button type="button" class="phone-country-btn" id="phone-country-btn" onclick="toggleCountryList(event)">
+                <span class="pcb-flag" id="pflag">🇪🇬</span>
+                <span class="pcb-name" id="pcb-name">مصر</span>
+                <span class="pcb-chevron">▾</span>
+              </button>
+            </div>
+            <div class="phone-input-wrap">
+              <span class="phone-code-prefix" id="pcode-prefix">+20</span>
+              <input class="phone-input-real" type="tel" id="ph" placeholder="1XXXXXXXXX"
+                oninput="handlePhoneInput(this)" autocomplete="tel-national">
+            </div>
+          </div>
+          <div class="finline-tip" id="tip-ph"></div>
+          <div class="finline-tip" id="ph-hint" style="margin-top:6px"></div>
+          <div class="ferr" id="e-ph"></div>
+        </div>
+
+        <!-- City -->
+        <div class="field">
+          <label class="flabel"><span data-t="city"></span><span class="req">*</span></label>
+          <div class="city-row">
+            <div class="city-chip" data-val="cairo" onclick="selCity(this)" data-t-chip="city_cairo"></div>
+            <div class="city-chip" data-val="giza" onclick="selCity(this)" data-t-chip="city_giza"></div>
+            <div class="city-chip" data-val="other" onclick="selCity(this)" data-t-chip="city_other"></div>
+          </div>
+          <div class="other-city" id="otherCity"><input type="text" id="oc" data-t="city_other_ph" placeholder=""></div>
+          <div class="ferr" id="e-city"></div>
+        </div>
+
+        <!-- Age -->
+        <div class="field">
+          <label class="flabel"><span data-t="age"></span><span class="req">*</span></label>
+          <div class="chips" id="agechips">
+            <div class="chip" data-val="under18" onclick="selChip(this,'agechips')">-18</div>
+            <div class="chip" data-val="18-21" onclick="selChip(this,'agechips')">18 – 21</div>
+            <div class="chip" data-val="22-25" onclick="selChip(this,'agechips')">22 – 25</div>
+            <div class="chip" data-val="26-30" onclick="selChip(this,'agechips')">26 – 30</div>
+            <div class="chip" data-val="31-35" onclick="selChip(this,'agechips')">31 – 35</div>
+            <div class="chip" data-val="36+" onclick="selChip(this,'agechips')">36+</div>
+          </div>
+          <div class="ferr" id="e-age"></div>
+        </div>
+
+        <!-- National ID -->
+        <div class="field">
+          <label class="flabel"><span data-t="nid"></span><span class="req">*</span></label>
+          <div class="finline-tip show no-icon" data-t="nid_hint" style="margin-bottom:10px"></div>
+          <label class="upload-zone">
+            <input type="file" id="nid" accept="image/*" onchange="prevUp(this,'nidprev')">
+            <div class="uicon">🪪</div>
+            <div class="ulabel"><strong data-t="nid_label"></strong></div>
+            <div style="font-size:11px;color:var(--gray);margin-top:4px">JPG, PNG — Max 5MB</div>
+            <img id="nidprev" class="upreview" src="" alt="">
+          </label>
+          <div class="ferr" id="e-nid"></div>
+        </div>
+
+        <!-- Hear -->
+        <div class="field">
+          <label class="flabel"><span data-t="hear"></span> <span style="font-size:11px;color:var(--gray)"
+              data-t="opt"></span></label>
+          <div class="chips" id="hachips">
+            <div class="chip" data-val="instagram" onclick="selChip(this,'hachips')" data-t="hear_ig"></div>
+            <div class="chip" data-val="tiktok" onclick="selChip(this,'hachips')" data-t="hear_tt"></div>
+            <div class="chip" data-val="facebook" onclick="selChip(this,'hachips')" data-t="hear_fb"></div>
+            <div class="chip" data-val="linkedin" onclick="selChip(this,'hachips')" data-t="hear_li"></div>
+            <div class="chip" data-val="friend" onclick="selChip(this,'hachips')" data-t="hear_fr"></div>
+            <div class="chip" data-val="community" onclick="selChip(this,'hachips')" data-t="hear_co"></div>
+            <div class="chip" data-val="partner" onclick="selChip(this,'hachips')" data-t="hear_pa"></div>
+            <div class="chip" data-val="other" onclick="selChip(this,'hachips')" data-t="hear_ot"></div>
+          </div>
+          <div class="other-box" id="ha-other-box">
+            <input type="text" id="ha-other" data-t="hear_other_ph" placeholder="">
+          </div>
+          <input type="hidden" id="ha" value="">
+        </div>
+
+        <!-- Code -->
+        <div class="field">
+          <label class="flabel"><span data-t="code"></span> <span style="font-size:11px;color:var(--gray)"
+              data-t="opt"></span></label>
+          <input type="text" id="sc" data-t="code_ph" placeholder="" style="letter-spacing:1px">
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-p" onclick="toStep(2)"><span data-t="next"></span> <span
+              class="btn-arrow-next"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step-2" class="step">
+      <div class="card">
+        <div class="sec-tag">Section 02</div>
+        <div class="sec-title" data-t="sec2_title"></div>
+        <div class="sec-desc" data-t="sec2_desc"></div>
+        <div class="field" style="margin-top:20px">
+          <label class="flabel"><span data-t="edu_status"></span><span class="req">*</span></label>
+          <div class="radio-grp" id="grp-edu">
+            <label class="radio-item" onclick="selRad(this,'edu','highschool')"><input type="radio" name="edu"
+                value="highschool">
+              <div class="rdot"></div>
+              <div class="rtxt" data-t="edu_hs"></div>
+            </label>
+            <label class="radio-item" onclick="selRad(this,'edu','university')"><input type="radio" name="edu"
+                value="university">
+              <div class="rdot"></div>
+              <div class="rtxt" data-t="edu_uni"></div>
+            </label>
+            <label class="radio-item" onclick="selRad(this,'edu','masters')"><input type="radio" name="edu"
+                value="masters">
+              <div class="rdot"></div>
+              <div class="rtxt" data-t="edu_ma"></div>
+            </label>
+            <label class="radio-item" onclick="selRad(this,'edu','phd')"><input type="radio" name="edu" value="phd">
+              <div class="rdot"></div>
+              <div class="rtxt" data-t="edu_phd"></div>
+            </label>
+
+          </div>
+          <div class="ferr" id="e-edu"></div>
+        </div>
+        <div class="field">
+          <label class="flabel"><span data-t="school"></span><span class="req">*</span></label>
+          <input type="text" id="sn" data-t="school_ph" placeholder="">
+          <div class="ferr" id="e-sn"></div>
+        </div>
+        <div class="field" id="majorf">
+          <label class="flabel"><span data-t="major"></span><span class="req">*</span></label>
+          <input type="text" id="mj" data-t="major_ph" placeholder="">
+          <div class="ferr" id="e-mj"></div>
+        </div>
+        <div class="field" id="syf" style="display:none">
+          <label class="flabel"><span data-t="study_year"></span><span class="req">*</span></label>
+          <div class="chips" id="sychips" style="flex-wrap:wrap;gap:8px"></div>
+          <div id="sy-other-field" style="display:none;margin-top:10px">
+            <input type="text" id="sy-other" data-t="study_other_ph" placeholder="">
+          </div>
+          <div class="ferr" id="e-sy"></div>
+        </div>
+        <div class="field" id="gyf">
+          <label class="flabel"><span data-t="grad_year"></span><span class="req">*</span></label>
+          <input type="text" id="gy" data-t="grad_year_ph" placeholder=""
+            style="direction:ltr;font-family:'Inter',sans-serif" oninput="checkYearInput(this,'tip-gy')">
+          <div class="finline-tip" id="tip-gy"></div>
+          <div class="finline-tip show" data-t="grad_year_hint" style="margin-top:8px"></div>
+          <div class="ferr" id="e-gy"></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-p" onclick="toStep(3)"><span data-t="next"></span> <span
+              class="btn-arrow-next"></span></button>
+          <button class="btn-back" onclick="toStep(1)"><span class="btn-arrow-back"></span> <span
+              data-t="back"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="step-3" class="step">
+      <div class="card">
+        <div class="sec-tag">Section 03</div>
+        <div class="sec-title" data-t="sec3_title"></div>
+        <div class="sec-desc" data-t="sec3_desc"></div>
+        <div class="career-cards" style="margin-top:20px">
+          <div class="ccard" data-val="unemployed" onclick="selCareer(this)">
+            <div class="ccard-icon">🔍</div>
+            <div class="ccard-title" data-t="career_none_t"></div>
+            <div class="ccard-desc" data-t="career_none_d"></div>
+          </div>
+          <div class="ccard" data-val="employee" onclick="selCareer(this)">
+            <div class="ccard-icon">🏢</div>
+            <div class="ccard-title" data-t="career_emp_t"></div>
+            <div class="ccard-desc" data-t="career_emp_d"></div>
+          </div>
+          <div class="ccard" data-val="freelancer" onclick="selCareer(this)">
+            <div class="ccard-icon">💻</div>
+            <div class="ccard-title" data-t="career_free_t"></div>
+            <div class="ccard-desc" data-t="career_free_d"></div>
+          </div>
+          <div class="ccard" data-val="business" onclick="selCareer(this)">
+            <div class="ccard-icon">🚀</div>
+            <div class="ccard-title" data-t="career_biz_t"></div>
+            <div class="ccard-desc" data-t="career_biz_d"></div>
+          </div>
+        </div>
+        <div class="ferr" id="e-career" style="margin-top:12px"></div>
+        <div class="btn-row">
+          <button class="btn btn-p" onclick="toStep(4)"><span data-t="next"></span> <span
+              class="btn-arrow-next"></span></button>
+          <button class="btn-back" onclick="toStep(2)"><span class="btn-arrow-back"></span> <span
+              data-t="back"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4a -->
+    <div id="step-4a" class="step">
+      <div class="card">
+        <div class="sec-tag">Section 03-A</div>
+        <div class="sec-title" data-t="sec4a_title"></div>
+        <div class="sec-desc" data-t="sec4a_desc"></div>
+        <div class="field" style="margin-top:20px">
+          <label class="flabel"><span data-t="interest"></span><span class="req">*</span></label>
+          <input type="text" id="if" data-t="interest_ph" placeholder="">
+          <div class="ferr" id="e-if"></div>
+        </div>
+        <div class="field">
+          <label class="flabel"><span data-t="why_field"></span> <span style="font-size:11px;color:var(--gray)"
+              data-t="opt"></span></label>
+          <textarea id="wf" data-t="why_ph" rows="3" placeholder="" style="resize:none"></textarea>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-p" onclick="toStep(5)"><span data-t="review_cta"></span> <span
+              class="btn-arrow-next"></span></button>
+          <button class="btn-back" onclick="backFrom4()"><span class="btn-arrow-back"></span> <span
+              data-t="back"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4b -->
+    <div id="step-4b" class="step">
+      <div class="card">
+        <div class="sec-tag">Section 03-B</div>
+        <div class="sec-title" data-t="sec4b_title"></div>
+        <div class="field" style="margin-top:20px">
+          <label class="flabel"><span data-t="job_title"></span><span class="req">*</span></label>
+          <input type="text" id="jt" data-t="job_ph" placeholder="">
+          <div class="ferr" id="e-jt"></div>
+        </div>
+        <div class="field">
+          <label class="flabel"><span data-t="company"></span><span class="req">*</span></label>
+          <input type="text" id="cn" data-t="company_ph" placeholder="">
+          <div class="ferr" id="e-cn"></div>
+        </div>
+        <div class="field">
+          <label class="flabel"><span data-t="exp"></span><span class="req">*</span></label>
+          <div class="chips" id="expchips">
+            <div class="chip" data-val="less1" onclick="selChip(this,'expchips')" data-t="exp_l1"></div>
+            <div class="chip" data-val="1-2" onclick="selChip(this,'expchips')" data-t="exp_l2"></div>
+            <div class="chip" data-val="3-5" onclick="selChip(this,'expchips')" data-t="exp_l3"></div>
+            <div class="chip" data-val="6-9" onclick="selChip(this,'expchips')" data-t="exp_l4"></div>
+            <div class="chip" data-val="10+" onclick="selChip(this,'expchips')" data-t="exp_l5"></div>
+          </div>
+          <div class="ferr" id="e-exp"></div>
+        </div>
+        <div class="field">
+          <label class="flabel"><span data-t="linkedin"></span> <span style="font-size:11px;color:var(--gray)"
+              data-t="opt"></span></label>
+          <input type="url" id="le" placeholder="https://linkedin.com/in/..." style="direction:ltr"
+            oninput="liveValidateUrl(this,'le-hint')">
+          <div class="ferr" id="le-hint" style="display:none"></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-p" onclick="toStep(5)"><span data-t="review_cta"></span> <span
+              class="btn-arrow-next"></span></button>
+          <button class="btn-back" onclick="backFrom4()"><span class="btn-arrow-back"></span> <span
+              data-t="back"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4c -->
+    <div id="step-4c" class="step">
+      <div class="card">
+        <div class="sec-tag">Section 03-C</div>
+        <div class="sec-title" data-t="sec4c_title"></div>
+        <div class="field" id="bnf" style="display:none;margin-top:20px">
+          <label class="flabel"><span data-t="biz_name"></span><span class="req">*</span></label>
+          <input type="text" id="bn" data-t="biz_name_ph" placeholder="">
+          <div class="ferr" id="e-bn"></div>
+        </div>
+        <div class="field" style="margin-top:20px">
+          <label class="flabel"><span data-t="industry"></span><span class="req">*</span></label>
+          <input type="text" id="fi" data-t="industry_ph" placeholder="">
+          <div class="ferr" id="e-fi"></div>
+        </div>
+        <div class="field">
+          <label class="flabel"><span data-t="why_biz"></span> <span style="font-size:11px;color:var(--gray)"
+              data-t="opt"></span></label>
+          <textarea id="wb" data-t="why_biz_ph" rows="3" placeholder="" style="resize:none"></textarea>
+        </div>
+        <div class="field">
+          <label class="flabel"><span data-t="li_personal"></span> <span style="font-size:11px;color:var(--gray)"
+              data-t="opt"></span></label>
+          <input type="url" id="lp" placeholder="https://linkedin.com/in/..." style="direction:ltr"
+            oninput="liveValidateUrl(this,'lp-hint')">
+          <div class="ferr" id="lp-hint" style="display:none"></div>
+        </div>
+        <div class="field" id="blf" style="display:none">
+          <label class="flabel"><span data-t="li_company"></span> <span style="font-size:11px;color:var(--gray)"
+              data-t="opt"></span></label>
+          <input type="url" id="lb" placeholder="https://linkedin.com/company/..." style="direction:ltr"
+            oninput="liveValidateUrl(this,'lb-hint')">
+          <div class="ferr" id="lb-hint" style="display:none"></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-p" onclick="toStep(5)"><span data-t="review_cta"></span> <span
+              class="btn-arrow-next"></span></button>
+          <button class="btn-back" onclick="backFrom4()"><span class="btn-arrow-back"></span> <span
+              data-t="back"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div id="step-5" class="step">
+      <div class="card">
+        <div class="sec-tag">Review</div>
+        <div class="sec-title" data-t="sec5_title"></div>
+        <div class="sec-desc" data-t="sec5_desc"></div>
+        <div id="reviewContent" style="margin-top:20px"></div>
+        <div class="btn-row" style="margin-top:28px">
+          <button id="submit-btn" class="btn btn-gold" onclick="submit()" data-t="confirm"></button>
+          <button class="btn-back" onclick="backFromReview()"><span class="btn-arrow-back"></span> <span
+              data-t="edit"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: SUCCESS & CARD -->
+    <div id="step-6" class="step">
+      <div id="step-success">
+        <div class="sicon">🌟</div>
+        <div class="stitle" data-t="success_title"></div>
+        <div class="sdesc" data-t="success_desc"></div>
+
+        <div class="viral-sec">
+          <div class="vtitle" data-t="viral_title"></div>
+          <div class="vdesc" data-t="viral_desc"></div>
+
+          <!-- أزرار التحكم في البيانات -->
+          <div class="card-edit-row">
+            <div class="field">
+              <label class="flabel" data-t="card_name"></label>
+              <input type="text" id="cname" class="en-font" oninput="updateCard()">
+            </div>
+            <div class="field">
+              <label class="flabel" data-t="card_pos"></label>
+              <div style="display:flex; gap:10px;">
+                <input type="text" id="cpos" class="en-font" style="flex:1" oninput="updateCard()">
+                <button class="tog" id="ptog" onclick="togPos()" data-t="card_hide"></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- منطقة رفع الصورة التي كانت مفقودة -->
+          <label class="card-photo-upload" for="cph"
+            style="display: block; margin-bottom: 20px; border: 2px dashed var(--accent); padding: 15px; border-radius: 12px; cursor: pointer; text-align: center; background: rgba(0,232,118,0.05);">
+            📸 <span data-t="card_photo" style="color: var(--accent); font-weight: 700;"></span>
+            <input type="file" id="cph" accept="image/*" style="display:none" onchange="loadCardPhoto(this)">
+          </label>
+
+          <!-- المعاينة الذكية للكارد -->
+          <div class="card-html-wrap" id="card-preview-container">
+            <div id="sm-card">
+              <img src="https://i.ibb.co/rfdkKqFP/Star-Mindz-I-Am-Attending.png" crossorigin="anonymous"
+                style="position:absolute; inset:0; width:100%; height:100%; z-index:1;">
+              <div id="sm-photo-container">
+                <img id="sm-photo-img" src="" style="width:100%; height:100%; object-fit:cover; display:none;">
+              </div>
+              <div id="text-area-wrapper">
+                <div id="sm-name-disp">YOUR NAME</div>
+                <div id="sm-role-disp">POSITION @ COMPANY</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- أزرار الأكشن الجديدة -->
+          <div style="margin-top: 25px; margin-inline: auto;">
+
+            <!-- زر التحميل الأساسي -->
+            <button class="btn btn-gold" onclick="dlCard()"
+              style="width: 100%; margin-bottom: 20px; height: 55px; font-size: 18px;">
+              ⬇ <span data-t="dl"></span>
+            </button>
+
+            <!-- صندوق المنشور الجاهز -->
+            <div class="post-box">
+              <div class="post-header">
+                <span data-t="post_title"></span>
+                <button type="button" class="copy-tag" onclick="copyCaption()" data-t="copy_btn"></button>
+              </div>
+              <div id="post-text" class="post-content" data-t="suggested_post"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+
+    function copyCaption() {
+      const text = document.getElementById('post-text').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        toast(t('copy_ok'), 'ok');
+      }).catch(err => {
+        // حل احتياطي في حال فشل الكليب بورد
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.top = "-9999px";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        toast(t('copy_ok'), 'ok');
+      });
+    }
+
+
+
+    /* ═══════ CONFIG ═══════ */
+    const CFG = {
+      GS_URL: 'https://script.google.com/macros/s/AKfycbyhz3c-8Hc6dNfxroNgcnU5VCo_aqQSSVQyaNvAAXcLaFj-5RkrNWfvl1XtlgvS05gN/exec',
+      SITE: 'https://starmindz.framer.media'
+    };
+
+    /* ═══════ TRANSLATIONS ═══════ */
+    const T = {
+      ar: {
+        'sec1_title': 'المعلومات الأساسية', 'sec1_desc': 'كل الحقول في هذا القسم إجبارية',
+        'sec2_title': 'التعليم', 'sec2_desc': 'كل الحقول إجبارية',
+        'sec3_title': 'وضعك المهني الحالي', 'sec3_desc': 'اختر الوضع الأقرب لحالتك الآن',
+        'sec4a_title': 'مجال الاهتمام', 'sec4a_desc': 'إجاباتك بتساعدنا نخدمك أحسن في الإيفنت',
+        'sec4b_title': 'بيانات العمل', 'sec4b_desc': '',
+        'sec4c_title': 'بيانات مشروعك', 'sec4c_desc': '',
+        'sec5_title': 'مراجعة بياناتك', 'sec5_desc': 'تأكد من صحة بياناتك قبل الإرسال',
+        'pg1': 'المعلومات الأساسية', 'pg2': 'التعليم', 'pg3': 'الوضع المهني',
+        'pg4a': 'مجال الاهتمام', 'pg4b': 'بيانات العمل', 'pg4c': 'بيانات المشروع', 'pg5': 'المراجعة',
+        'fullname': 'الاسم بالكامل (بالإنجليزية)',
+        'fullname_ph': 'Write your full name here...',
+        'err_fullname': '⚠️ الاسم بالكامل مطلوب (بالإنجليزية فقط)',
+        'tip_fullname': '💡 اكتب اسمك بالكامل بالإنجليزية — مثال: AbdAlrhman Al-Hegazy',
+        'email': 'البريد الإلكتروني', 'email_ph': 'example@email.com',
+        'phone': 'رقم الهاتف (واتساب)', 'phone_hint': 'يجب أن يكون الرقم عليه واتساب', 'phone_ph': 'XXXXXXXXXX',
+        'city': 'المدينة الحالية', 'city_cairo': 'القاهرة', 'city_giza': 'الجيزة', 'city_other': 'مدينة أخرى', 'city_other_ph': 'اكتب مدينتك...',
+        'age': 'الفئة العمرية',
+        'nid': 'البطاقة الشخصية (الوجه الأمامي)', 'nid_hint': '⚠️ بياناتك محمية ولا تُشارك مع أي طرف ثالث',
+        'nid_label': 'اضغط لرفع الصورة أو اسحبها هنا',
+        'hear': 'كيف سمعت عنا؟', 'code': 'كود الدعوة', 'code_ph': 'أدخل كود الدعوة الذي حصلت عليه.',
+        'opt': '(اختياري)',
+        'edu_status': 'الحالة التعليمية الحالية أو أعلى مؤهل',
+        'edu_hs': 'طالب ثانوي / High School', 'edu_uni': 'طالب جامعي', 'edu_ma': 'ماجستير', 'edu_phd': 'دكتوراه',
+        'school': 'اسم الجامعة أو المدرسة', 'school_ph': 'اسم الجامعة أو المدرسة',
+        'major': 'مجال الدراسة / التخصص', 'major_ph': 'مثال: هندسة — تصميم — إعلام...',
+        'study_year': 'السنة الدراسية', 'grad_year': 'سنة التخرج', 'grad_year_ph': 'مثال: 2026',
+        'grad_year_hint': 'اكتب السنة (الفعلية أو المتوقعة)',
+        'study_other_ph': 'اكتب سنتك الدراسية...',
+        'career_none_t': 'لا أعمل حالياً', 'career_none_d': 'بتدور على فرصتك',
+        'career_emp_t': 'موظف', 'career_emp_d': 'شاغل وظيفة ثابتة',
+        'career_free_t': 'فريلانسر', 'career_free_d': 'مستقل على مشاريع',
+        'career_biz_t': 'Business / Founder', 'career_biz_d': 'صاحب مشروع أو ستارت أب',
+        'interest': 'ما هو التخصص الذي تريد العمل فيه؟', 'interest_ph': 'مثال: تصميم — تسويق — برمجة... أو اكتب لا شيء',
+        'why_field': 'ليه اخترت التخصص ده؟', 'why_ph': 'شاركنا سبب اهتمامك...',
+        'job_title': 'المسمى الوظيفي', 'job_ph': 'مثال: مصمم جرافيك — مدير تسويق...',
+        'company': 'اسم الشركة أو المجال', 'company_ph': 'اسم الشركة أو قطاع العمل',
+        'exp': 'سنوات الخبرة', 'exp_l1': 'أقل من سنة', 'exp_l2': '1 – 2 سنة', 'exp_l3': '3 – 5 سنوات', 'exp_l4': '6 – 9 سنوات', 'exp_l5': '10+ سنوات',
+        'linkedin': 'رابط لينكدإن', 'biz_name': 'اسم الشركة أو المشروع', 'biz_name_ph': 'اسم شركتك أو مشروعك',
+        'industry': 'المجال أو المسمى الوظيفي', 'industry_ph': 'مثال: فيديو إيديتور — مصمم — كاتب محتوى...',
+        'why_biz': 'ليه اخترت المجال أو المشروع ده؟', 'why_biz_ph': 'شاركنا قصتك...',
+        'li_personal': 'رابط لينكدإن الشخصي', 'li_company': 'رابط لينكدإن الشركة',
+        'next': 'التالي', 'back': 'رجوع', 'review_cta': 'مراجعة البيانات', 'confirm': '✦ تأكيد التسجيل', 'edit': 'تعديل البيانات',
+        'registering': 'جاري التسجيل...',
+        'success_title': 'تم تسجيلك بنجاح!', 'success_desc': 'مبروك — أنت الآن جزء من Star Mindz Edition 01.\nسيصلك على إيميلك تفاصيل الإيفنت قريباً.',
+        'viral_title': '🎴 شارك تسجيلك!', 'viral_desc': 'ولّد بطاقتك الشخصية واشاركها مع أصحابك — وخليهم يسجّلوا برضه!',
+        'card_photo': 'ارفع صورتك الشخصية', 'card_name': 'الاسم على البطاقة', 'card_pos': 'المسمى والشركة',
+        'card_hide': 'إخفاء', 'card_show': 'إظهار', 'card_sq': 'لاند سكيب 16:9', 'card_st': 'ستوري 9:16',
+        'dl': 'تحميل', 'fb': 'فيسبوك', 'li': 'لينكدإن', 'ig': 'إنستجرام',
+        'ig_note': 'للإنستجرام: حمّل الصورة وشاركها يدوياً من التطبيق',
+        'reg_ok': '✅ تم التسجيل بنجاح!', 'dl_ok': '✅ تم تحميل البطاقة',
+        'err_retry': 'حدث خطأ، حاول مرة أخرى', 'too_large': 'الملف أكبر من 5MB',
+        'req_note': 'الحقول المُعلّمة بـ (*) إجبارية',
+        'hear_ig': 'إنستجرام', 'hear_tt': 'تيك توك', 'hear_fb': 'فيسبوك', 'hear_li': 'لينكدإن',
+        'hear_fr': 'صديق أو زميل', 'hear_co': 'مجموعة أو مجتمع', 'hear_pa': 'شريك الإيفنت', 'hear_ot': 'أخرى', 'hear_other_ph': 'اكتب مصدر معرفتك...',
+        'rev_basic': 'المعلومات الأساسية', 'rev_edu': 'التعليم', 'rev_career': 'المهني',
+        'rev_name': 'الاسم', 'rev_email': 'البريد', 'rev_phone': 'الهاتف', 'rev_city': 'المدينة',
+        'rev_age': 'الفئة العمرية', 'rev_hear': 'سمع عنا', 'rev_code': 'الكود',
+        'rev_edu_s': 'التعليم', 'rev_school': 'المدرسة', 'rev_major': 'التخصص', 'rev_year': 'السنة', 'rev_grad': 'التخرج',
+        'rev_career_s': 'الوضع المهني', 'rev_title': 'المسمى', 'rev_comp': 'الشركة', 'rev_exp': 'الخبرة',
+        'rev_industry': 'المجال', 'rev_int': 'الاهتمام',
+        'edu_map_hs': 'ثانوي', 'edu_map_uni': 'جامعي', 'edu_map_ma': 'ماجستير', 'edu_map_phd': 'دكتوراه', 'edu_map_none': 'لا يتعلم',
+        'car_map_none': 'لا يعمل', 'car_map_emp': 'موظف', 'car_map_free': 'فريلانسر', 'car_map_biz': 'Business/Founder',
+        'err_email': '⚠️ بريد إلكتروني صحيح مطلوب',
+        'err_phone': '⚠️ رقم الهاتف مطلوب', 'err_phone_format': '⚠️ رقم غير صحيح',
+        'err_age': '⚠️ اختر فئتك العمرية',
+        'err_nid': '⚠️ صورة البطاقة مطلوبة',
+        'err_city': '⚠️ اختر مدينتك',
+        'err_edu': '⚠️ اختر حالتك التعليمية',
+        'err_school': '⚠️ اسم المؤسسة التعليمية مطلوب',
+        'err_major': '⚠️ التخصص مطلوب',
+        'err_syear': '⚠️ السنة الدراسية مطلوبة',
+        'err_gyear': '⚠️ سنة التخرج مطلوبة',
+        'err_career': '⚠️ اختر وضعك المهني',
+        'err_interest': '⚠️ هذا الحقل مطلوب',
+        'err_jt': '⚠️ المسمى الوظيفي مطلوب',
+        'err_cn': '⚠️ اسم الشركة أو المجال مطلوب',
+        'err_exp': '⚠️ اختر سنوات خبرتك',
+        'err_bn': '⚠️ اسم الشركة مطلوب',
+        'err_fi': '⚠️ المجال مطلوب',
+        'select_placeholder': 'اختر...',
+        'cover_desc': 'أول إيفنت مجتمعي في مصر لصناع المحتوى والفريلانسرز وأصحاب البراندات الناشئة — يوم واحد — خمس محاور — مجاني بالكامل.',
+        'start_btn': 'ابدأ التسجيل الآن',
+        'free_label': 'مجاني',
+        'lang_switch_btn': '🌐 English instead?',
+        'grad_label': 'خريج',
+        'other_label': 'أخرى',
+        'study_other_label': 'اكتب سنتك الدراسية',
+        'crop_title': 'تعديل الصورة الشخصية',
+        'crop_instruction': 'قم بتحريك وتكبير الصورة لتناسب الدائرة',
+        'crop_save': 'حفظ وتأكيد الصورة',
+        'crop_cancel': 'إلغاء وتغيير الصورة',
+        'ig_pc_msg': 'إنستجرام لا يدعم المشاركة من الكمبيوتر، تم تحميل الكارد لتنشره يدوياً.',
+        'post_title': 'منشور مقترح للمشاركة ✍️',
+        'copy_btn': 'نسخ النص',
+        'copy_ok': '✅ تم نسخ النص بنجاح!',
+        'suggested_post': "أنا سجلت في Star Mindz'26! حماسي كبير للمشاركة في أكبر حدث لمجتمعات الـ Freelancing والـ Content Creation في مصر. 🚀✨\n\nسجلوا أنتم كمان من هنا: \nhttps://starmindz.framer.media \n\n#StarMindz26 #Creators #Egypt",
+      },
+      en: {
+        'sec1_title': 'Basic Information', 'sec1_desc': 'All fields in this section are required',
+        'sec2_title': 'Education', 'sec2_desc': 'All fields are required',
+        'sec3_title': 'Current Professional Status', 'sec3_desc': 'Select the option that best describes you',
+        'sec4a_title': 'Area of Interest', 'sec4a_desc': 'Your answers help our team better support you at the event',
+        'sec4b_title': 'Work Details', 'sec4b_desc': '',
+        'sec4c_title': 'Your Project Details', 'sec4c_desc': '',
+        'sec5_title': 'Review Your Information', 'sec5_desc': 'Please review your details before submitting',
+        'pg1': 'Basic Info', 'pg2': 'Education', 'pg3': 'Career',
+        'pg4a': 'Interest', 'pg4b': 'Work', 'pg4c': 'Project', 'pg5': 'Review',
+        'fullname': 'Full Name',
+        'fullname_ph': 'Write your full name here...',
+        'err_fullname': '⚠️ Full name required (English only)',
+        'tip_fullname': '💡 Write your full name in English — e.g. AbdAlrhman Al-Hegazy',
+        'email': 'Email Address', 'email_ph': 'example@email.com',
+        'phone': 'Phone Number (WhatsApp)', 'phone_hint': 'This number must be reachable on WhatsApp', 'phone_ph': 'XXXXXXXXXX',
+        'city': 'Current City', 'city_cairo': 'Cairo', 'city_giza': 'Giza', 'city_other': 'Other City', 'city_other_ph': 'Type your city...',
+        'age': 'Age Range',
+        'nid': 'National ID — Front Side', 'nid_hint': '⚠️ Your data is secure and will not be shared with any third party',
+        'nid_label': 'Click to upload or drag here',
+        'hear': 'How did you hear about us?', 'code': 'Special Code', 'code_ph': 'Enter code if you have one',
+        'opt': '(optional)',
+        'edu_status': 'Current Education or Highest Degree',
+        'edu_hs': 'High School Student', 'edu_uni': 'University Student', 'edu_ma': "Master's Degree", 'edu_phd': 'PhD / Doctorate',
+        'school': 'School / University Name', 'school_ph': 'Enter school or university name',
+        'major': 'Field of Study / Major', 'major_ph': 'e.g. Engineering, Design, Media...',
+        'study_year': 'Study Year', 'grad_year': 'Graduation Year', 'grad_year_ph': 'e.g. 2026',
+        'grad_year_hint': 'Enter actual or expected graduation year',
+        'study_other_ph': 'Type your study year...',
+        'career_none_t': 'Not Working', 'career_none_d': 'Exploring your path',
+        'career_emp_t': 'Employee', 'career_emp_d': 'Working at a company',
+        'career_free_t': 'Freelancer', 'career_free_d': 'Independent projects',
+        'career_biz_t': 'Business / Founder', 'career_biz_d': 'Business owner or startup',
+        'interest': 'What field do you want to work in?', 'interest_ph': 'e.g. Design, Marketing, Programming... or Not sure',
+        'why_field': 'Why did you choose this field?', 'why_ph': 'Share your reason...',
+        'job_title': 'Job Title', 'job_ph': 'e.g. Graphic Designer, Marketing Manager...',
+        'company': 'Company Name or Industry', 'company_ph': 'Company name or industry sector',
+        'exp': 'Years of Experience', 'exp_l1': '< 1 Year', 'exp_l2': '1 – 2 Years', 'exp_l3': '3 – 5 Years', 'exp_l4': '6 – 9 Years', 'exp_l5': '10+ Years',
+        'linkedin': 'LinkedIn URL', 'biz_name': 'Company / Project Name', 'biz_name_ph': 'Your company or project name',
+        'industry': 'Industry / Job Title', 'industry_ph': 'e.g. Video Editor, Graphic Designer, Content Writer...',
+        'why_biz': 'Why did you choose this field or project?', 'why_biz_ph': 'Share your story...',
+        'li_personal': 'Personal LinkedIn URL', 'li_company': 'Company LinkedIn Page',
+        'next': 'Next', 'back': 'Back', 'review_cta': 'Review Information', 'confirm': '✦ Confirm Registration', 'edit': 'Edit Information',
+        'registering': 'Registering...',
+        'success_title': "You're registered!", 'success_desc': 'Congratulations — you\'re officially part of Star Mindz Edition 01.\nEvent details will be sent to your email soon.',
+        'viral_title': '🎴 Share Your Registration!', 'viral_desc': 'Generate your personal card and invite your friends to register too!',
+        'card_photo': 'Upload your photo', 'card_name': 'Name on card', 'card_pos': 'Title & Company',
+        'card_hide': 'Hide', 'card_show': 'Show', 'card_sq': 'Landscape 16:9', 'card_st': 'Story 9:16',
+        'dl': 'Download', 'fb': 'Facebook', 'li': 'LinkedIn', 'ig': 'Instagram',
+        'ig_note': 'For Instagram: download the image then share manually from the app',
+        'reg_ok': '✅ Registered successfully!', 'dl_ok': '✅ Card downloaded',
+        'err_retry': 'An error occurred, please try again', 'too_large': 'File too large (max 5MB)',
+        'req_note': 'Fields marked (*) are required',
+        'hear_ig': 'Instagram', 'hear_tt': 'TikTok', 'hear_fb': 'Facebook', 'hear_li': 'LinkedIn',
+        'hear_fr': 'Friend / Colleague', 'hear_co': 'Group / Community', 'hear_pa': 'Event Partner', 'hear_ot': 'Other', 'hear_other_ph': 'Tell us how you heard...',
+        'rev_basic': 'Basic Information', 'rev_edu': 'Education', 'rev_career': 'Career',
+        'rev_name': 'Name', 'rev_email': 'Email', 'rev_phone': 'Phone', 'rev_city': 'City',
+        'rev_age': 'Age Range', 'rev_hear': 'How heard', 'rev_code': 'Code',
+        'rev_edu_s': 'Education', 'rev_school': 'School', 'rev_major': 'Major', 'rev_year': 'Year', 'rev_grad': 'Graduation',
+        'rev_career_s': 'Career Status', 'rev_title': 'Job Title', 'rev_comp': 'Company', 'rev_exp': 'Experience',
+        'rev_industry': 'Industry', 'rev_int': 'Interest',
+        'edu_map_hs': 'High School', 'edu_map_uni': 'University', 'edu_map_ma': 'Masters', 'edu_map_phd': 'PhD', 'edu_map_none': 'Not Studying',
+        'car_map_none': 'Not Working', 'car_map_emp': 'Employee', 'car_map_free': 'Freelancer', 'car_map_biz': 'Business/Founder',
+        'err_email': '⚠️ Valid email required',
+        'err_phone': '⚠️ Phone number required', 'err_phone_format': '⚠️ Invalid number',
+        'err_age': '⚠️ Select your age range',
+        'err_nid': '⚠️ National ID photo required',
+        'err_city': '⚠️ Select your city',
+        'err_edu': '⚠️ Select your education status',
+        'err_school': '⚠️ School/University name required',
+        'err_major': '⚠️ Major required',
+        'err_syear': '⚠️ Study year required',
+        'err_gyear': '⚠️ Graduation year required',
+        'err_career': '⚠️ Select your professional status',
+        'err_interest': '⚠️ This field is required',
+        'err_jt': '⚠️ Job title required',
+        'err_cn': '⚠️ Company name or industry required',
+        'err_exp': '⚠️ Select your experience',
+        'err_bn': '⚠️ Company name required',
+        'err_fi': '⚠️ Industry required',
+        'select_placeholder': 'Select...',
+        'cover_desc': 'The first community event in Egypt for content creators, freelancers, and early-stage brand builders — one day, five pillars, completely free.',
+        'start_btn': 'Start Registration',
+        'free_label': 'Free',
+        'lang_switch_btn': '🌐 تفضل العربية؟',
+        'grad_label': 'Graduated',
+        'other_label': 'Other',
+        'study_other_ph': 'Type your study year here...',
+        'crop_title': 'Edit Personal Photo',
+        'crop_instruction': 'Drag and zoom the photo to fit the circle',
+        'crop_save': 'Save and Confirm',
+        'crop_cancel': 'Cancel and Change',
+        'ig_pc_msg': 'Instagram desktop does not support sharing, card downloaded for manual post.',
+        'post_title': 'Suggested Post Caption ✍️',
+        'copy_btn': 'Copy Text',
+        'copy_ok': '✅ Text copied successfully!',
+        'suggested_post': "I just registered for Star Mindz'26! Excited to join the biggest community event for Creators & Freelancers in Egypt. 🚀✨\n\nRegister now at: \nhttps://starmindz.framer.media \n\n#StarMindz26 #Creators #Egypt",
+      }
+    };
+
+    /* phone countries */
+    const COUNTRIES = [
+      { f: '🇪🇬', n: 'Egypt', na: 'مصر', c: '+20', d: '01XXXXXXXXX' },
+      { f: '🇸🇦', n: 'Saudi Arabia', na: 'السعودية', c: '+966', d: '5XXXXXXXX' },
+      { f: '🇦🇪', n: 'UAE', na: 'الإمارات', c: '+971', d: '5XXXXXXXX' },
+      { f: '🇶🇦', n: 'Qatar', na: 'قطر', c: '+974', d: 'XXXXXXXX' },
+      { f: '🇰🇼', n: 'Kuwait', na: 'الكويت', c: '+965', d: 'XXXXXXXX' },
+      { f: '🇯🇴', n: 'Jordan', na: 'الأردن', c: '+962', d: 'XXXXXXXXX' },
+      { f: '🇱🇧', n: 'Lebanon', na: 'لبنان', c: '+961', d: 'XXXXXXXX' },
+      { f: '🇲🇦', n: 'Morocco', na: 'المغرب', c: '+212', d: 'XXXXXXXXX' },
+      { f: '🇹🇳', n: 'Tunisia', na: 'تونس', c: '+216', d: 'XXXXXXXX' },
+      { f: '🇩🇿', n: 'Algeria', na: 'الجزائر', c: '+213', d: 'XXXXXXXXX' },
+      { f: '🇸🇩', n: 'Sudan', na: 'السودان', c: '+249', d: 'XXXXXXXXX' },
+      { f: '🇱🇾', n: 'Libya', na: 'ليبيا', c: '+218', d: 'XXXXXXXXX' },
+      { f: '🇺🇸', n: 'USA', na: 'أمريكا', c: '+1', d: 'XXXXXXXXXX' },
+      { f: '🇬🇧', n: 'UK', na: 'بريطانيا', c: '+44', d: 'XXXXXXXXXX' },
+      { f: '🇩🇪', n: 'Germany', na: 'ألمانيا', c: '+49', d: 'XXXXXXXXXX' },
+      { f: '🇫🇷', n: 'France', na: 'فرنسا', c: '+33', d: 'XXXXXXXXXX' },
+      { f: '🇹🇷', n: 'Turkey', na: 'تركيا', c: '+90', d: 'XXXXXXXXXX' },
+      { f: '🇵🇰', n: 'Pakistan', na: 'باكستان', c: '+92', d: 'XXXXXXXXXX' }
+    ];
+
+    /* phone validation rules per country code
+       min/max = digit count WITHOUT country code
+       if country allows leading 0: {withZero: 11, withoutZero: 10}
+       otherwise: {min, max}
+    */
+    const PHONE_RULES = {
+      '+20': { withZero: 11, withoutZero: 10, hint_ar: '01XXXXXXXXX (١١ رقم) أو 1XXXXXXXXX (١٠ أرقام)', hint_en: '11 digits with 0 or 10 without (e.g. 01234567890)' },
+      '+966': { min: 9, max: 9, hint_ar: '9 أرقام (مثال: 512345678)', hint_en: '9 digits (e.g. 512345678)' },
+      '+971': { min: 9, max: 9, hint_ar: '9 أرقام (مثال: 501234567)', hint_en: '9 digits (e.g. 501234567)' },
+      '+974': { min: 8, max: 8, hint_ar: '8 أرقام (مثال: 33123456)', hint_en: '8 digits (e.g. 33123456)' },
+      '+965': { min: 8, max: 8, hint_ar: '8 أرقام (مثال: 51234567)', hint_en: '8 digits (e.g. 51234567)' },
+      '+962': { min: 9, max: 9, hint_ar: '9 أرقام (مثال: 791234567)', hint_en: '9 digits (e.g. 791234567)' },
+      '+961': { min: 7, max: 8, hint_ar: '7-8 أرقام (مثال: 71234567)', hint_en: '7-8 digits (e.g. 71234567)' },
+      '+212': { min: 9, max: 9, hint_ar: '9 أرقام (مثال: 612345678)', hint_en: '9 digits (e.g. 612345678)' },
+      '+216': { min: 8, max: 8, hint_ar: '8 أرقام (مثال: 20123456)', hint_en: '8 digits (e.g. 20123456)' },
+      '+213': { min: 9, max: 9, hint_ar: '9 أرقام (مثال: 551234567)', hint_en: '9 digits (e.g. 551234567)' },
+      '+249': { min: 9, max: 9, hint_ar: '9 أرقام (مثال: 912345678)', hint_en: '9 digits (e.g. 912345678)' },
+      '+218': { min: 9, max: 9, hint_ar: '9 أرقام (مثال: 912345678)', hint_en: '9 digits (e.g. 912345678)' },
+      '+1': { min: 10, max: 10, hint_ar: '10 أرقام (مثال: 2125551234)', hint_en: '10 digits (e.g. 2125551234)' },
+      '+44': { min: 10, max: 11, hint_ar: '10-11 رقم (مثال: 7911123456)', hint_en: '10-11 digits (e.g. 7911123456)' },
+      '+49': { min: 10, max: 11, hint_ar: '10-11 رقم', hint_en: '10-11 digits' },
+      '+33': { min: 9, max: 9, hint_ar: '9 أرقام (مثال: 612345678)', hint_en: '9 digits (e.g. 612345678)' },
+      '+90': { min: 10, max: 10, hint_ar: '10 أرقام (مثال: 5321234567)', hint_en: '10 digits (e.g. 5321234567)' },
+      '+92': { min: 10, max: 10, hint_ar: '10 أرقام (مثال: 3001234567)', hint_en: '10 digits (e.g. 3001234567)' },
+    };
+
+    function validatePhoneNumber(num, code) {
+      const n = num.replace(/\s/g, '');
+      const len = n.length;
+      const rule = PHONE_RULES[code];
+      if (!rule) return { ok: len >= 7 && len <= 12, hint: '' };
+      if (rule.withZero !== undefined) {
+        // Egypt-style: leading 0 = longer
+        if (n.startsWith('0')) return { ok: len === rule.withZero, hint: rule['hint_' + (lang || 'ar')] };
+        return { ok: len === rule.withoutZero, hint: rule['hint_' + (lang || 'ar')] };
+      }
+      return { ok: len >= rule.min && len <= rule.max, hint: rule['hint_' + (lang || 'ar')] };
+    }
+
+    /* ═══════ STATE ═══════ */
+    let lang = 'ar', step = 0, career = '', city = '', cphoto = null, posVis = true, fd = {};
+    let selCountry = COUNTRIES[0];
+
+    function t(k) { return (T[lang] || T.ar)[k] || k; }
+
+    /* ═══════ LANGUAGE MODAL ═══════ */
+    let _pendingLang = 'ar'; // default selection
+
+    function selectLangOpt(l) {
+      _pendingLang = l;
+      const arOpt = document.getElementById('ls-opt-ar');
+      const enOpt = document.getElementById('ls-opt-en');
+      if (arOpt) arOpt.classList.toggle('selected', l === 'ar');
+      if (enOpt) enOpt.classList.toggle('selected', l === 'en');
+      // animate selected option
+      const sel = l === 'ar' ? arOpt : enOpt;
+      if (sel) { sel.classList.remove('selected'); void sel.offsetWidth; sel.classList.add('selected'); }
+      // update confirm button text + arrow direction
+      const txt = document.getElementById('ls-btn-text');
+      const arr = document.getElementById('ls-btn-arrow');
+      if (txt) txt.textContent = l === 'ar' ? 'التالي' : 'Next';
+      if (arr) arr.textContent = l === 'ar' ? '←' : '→';
+      const btn = document.getElementById('ls-confirm-btn');
+      if (btn) btn.style.direction = l === 'ar' ? 'rtl' : 'ltr';
+    }
+
+    function confirmLang() {
+      setLang(_pendingLang);
+    }
+
+    /* ═══════ LANGUAGE SYSTEM ═══════ */
+    function setLang(l) {
+      lang = l;
+      const html = document.documentElement;
+      html.lang = l;
+      html.dir = l === 'ar' ? 'rtl' : 'ltr';
+      document.body.style.fontFamily = l === 'ar' ? "'IBM Plex Sans Arabic',sans-serif" : "'Syne',sans-serif";
+      /* hide lang screen */
+      const ls = document.getElementById('lang-screen');
+      ls.classList.add('out');
+      setTimeout(() => ls.style.display = 'none', 500);
+      /* update cover date */
+      const d = document.getElementById('cover-date');
+      if (d) d.textContent = l === 'ar' ? '24 أبريل 2026' : '24 April 2026';
+      /* reveal background */
+      document.body.classList.add('lang-revealed');
+      document.querySelector('.grad-bg').style.opacity = '';
+      /* render cover */
+      renderAll();
+      /* update start button text for direction */
+      const sb = document.getElementById('start-btn-el');
+      if (sb) { sb.setAttribute('data-t', 'start_btn'); sb.textContent = t('start_btn'); }
+      toStep(0);
+    }
+
+    function renderAll() {
+      /* update all [data-t] elements */
+      document.querySelectorAll('[data-t]').forEach(el => {
+        const k = el.getAttribute('data-t');
+        const val = t(k);
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = val;
+        else if (el.tagName === 'OPTION') el.textContent = val;
+        else if (el.tagName === 'BUTTON') el.textContent = val;
+        else el.innerHTML = val;
+      });
+      /* select placeholder options */
+      document.querySelectorAll('select [data-t-sel]').forEach(opt => {
+        opt.textContent = t('select_placeholder');
+      });
+      /* phone placeholder */
+      const ph = document.getElementById('ph');
+      if (ph) ph.placeholder = selCountry.d;
+    }
+
+    /* ═══════ PROGRESS ═══════ */
+    const PG_LABS = ['pg1', 'pg2', 'pg3', 'pg4a', 'pg4b', 'pg4c', 'pg5'];
+    const PG_PCT = { 0: 0, 1: 10, 2: 30, 3: 50, '4a': 70, '4b': 70, '4c': 70, 5: 90, 6: 100 };
+    const PG_NUM = { 1: 1, 2: 2, 3: 3, '4a': 4, '4b': 4, '4c': 4, 5: 5 };
+
+    function updPg(s) {
+      const b = document.getElementById('pgbar');
+      if (!s && s !== 1 || s === 6) { b.style.display = 'none'; return; }
+      if (s === 0) { b.style.display = 'none'; return; }
+      b.style.display = 'block';
+      const key = 'pg' + String(s).replace('-', '');
+      document.getElementById('pglb').textContent = t(key) || '';
+      document.getElementById('pgf').style.width = (PG_PCT[s] || 10) + '%';
+      const n = PG_NUM[s] || (typeof s === 'number' ? s : 4);
+      document.getElementById('pgcnt').textContent = n + ' / 5';
+    }
+
+    /* ═══════ STEP NAV ═══════ */
+    let _showLock = false;
+    function show(id) {
+      const incoming = document.getElementById(id);
+      if (!incoming) return;
+
+      const outgoing = document.querySelector('.step.active');
+
+      const doShow = () => {
+        document.querySelectorAll('.step').forEach(s => {
+          s.classList.remove('active', 'anim-in', 'anim-out');
+        });
+        if (incoming.style.display === 'none') incoming.style.display = '';
+        incoming.classList.add('active');
+        // animate only non-cover steps
+        if (id !== 'step-cover') incoming.classList.add('anim-in');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // pop the step counter
+        const cnt = document.getElementById('pgcnt');
+        if (cnt) { cnt.classList.remove('pg-pop'); void cnt.offsetWidth; cnt.classList.add('pg-pop'); }
+        _showLock = false;
+      };
+
+      if (outgoing && outgoing !== incoming && !_showLock && id !== 'step-cover') {
+        _showLock = true;
+        outgoing.classList.add('anim-out');
+        setTimeout(doShow, 200);
+      } else {
+        doShow();
+      }
+    }
+
+    function toStep(n) {
+      if (typeof n === 'string') { step = n; show('step-' + n); updPg(n); return; }
+
+      // --- التعديل الأول: عمل سكرول لأول خطأ في الخطوات العادية ---
+      if (n > step && step > 0 && !validate(step)) {
+        const firstErr = document.querySelector('.step.active .ferr.show');
+        if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      step = n; updPg(n);
+
+      if (n === 0) show('step-cover');
+      else if (n === 1) show('step-1');
+      else if (n === 2) show('step-2');
+      else if (n === 3) show('step-3');
+      else if (n === 4) {
+        if (!career) { showE('e-career', true); return; }
+        const mp = { unemployed: '4a', employee: '4b', freelancer: '4c', business: '4c' };
+        step = mp[career]; show('step-' + step); updPg(step);
+      }
+
+      // --- التعديل الثاني: عمل سكرول لأول خطأ في خطوة الوضع المهني ---
+      else if (n === 5) {
+        if (!validateCareer()) {
+          const firstErr = document.querySelector('.step.active .ferr.show');
+          if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        buildReview(); show('step-5'); updPg(5);
+      }
+
+      else if (n === 6) {
+        show('step-6');
+        // 1. تشغيل أولي فوراً
+        updatePreviewScale();
+        // 2. تشغيل مؤكد بعد انتهاء أنميشن الظهور (300 مللي ثانية)
+        setTimeout(() => {
+          updatePreviewScale();
+          window.scrollTo(0, 0); // لضمان صعود الصفحة لأعلى عند النجاح
+        }, 350);
+      }
+
+    }
+
+    function backFrom4() { toStep(3); }
+    function backFromReview() {
+      const mp = { unemployed: '4a', employee: '4b', freelancer: '4c', business: '4c' };
+      toStep(mp[career] || '3');
+    }
+
+    /* ═══════ VALIDATION ═══════ */
+    function showE(id, s, msg) {
+      const e = document.getElementById(id);
+      if (e) { e.textContent = msg || e.textContent; e.classList.toggle('show', s); }
+    }
+    function clrE() { document.querySelectorAll('.ferr.show,.finline-tip.show').forEach(e => e.classList.remove('show')); }
+    function v(id) { return (document.getElementById(id) || {}).value?.trim() || ''; }
+    function getR(n) { const e = document.querySelector('input[name="' + n + '"]:checked'); return e ? e.value : ''; }
+    function getC(g) { const e = document.querySelector('#' + g + ' .chip.active'); return e ? e.dataset.val : ''; }
+
+    function validate(s) {
+      clrE(); let ok = true;
+      if (s === 1) {
+        const fln = v('full-name');
+        if (!fln || !/^[a-zA-Z0-9\s\-\_\.]+$/.test(fln) || fln.split(' ').length < 2) {
+          showE('e-full', true, t('err_fullname'));
+          ok = false;
+        }
+        const phVal = v('ph');
+        if (!phVal) { showE('e-ph', true, t('err_phone')); ok = false; }
+        else {
+          const phRes = validatePhoneNumber(phVal, selCountry.c);
+          if (!phRes.ok) {
+            const hintEl = document.getElementById('ph-hint');
+            if (hintEl) { hintEl.classList.remove('show'); }
+            showE('e-ph', true, t('err_phone_format') + ' — ' + phRes.hint); ok = false;
+          }
+        }
+        if (!city) { showE('e-city', true, t('err_city')); ok = false; }
+        if (city === 'other' && !v('oc')) { showE('e-city', true, t('err_city')); ok = false; }
+        if (!document.querySelector('#agechips .chip.active')) { showE('e-age', true, t('err_age')); ok = false; }
+        if (!document.getElementById('nid').files[0] && !fd.nidB64) { showE('e-nid', true, t('err_nid')); ok = false; }
+      }
+      if (s === 2) {
+        if (!getR('edu')) { showE('e-edu', true, t('err_edu')); ok = false; }
+        if (!v('sn')) { showE('e-sn', true, t('err_school')); ok = false; }
+        const mf = document.getElementById('majorf');
+        if (mf && mf.style.display !== 'none' && !v('mj')) { showE('e-mj', true, t('err_major')); ok = false; }
+        const syf = document.getElementById('syf');
+        if (syf && syf.style.display !== 'none') {
+          const syv = getC('sychips');
+          if (!syv && !v('sy-other')) { showE('e-sy', true, t('err_syear')); ok = false; }
+        }
+        const gyf = document.getElementById('gyf');
+        if (gyf && gyf.style.display !== 'none' && !v('gy')) { showE('e-gy', true, t('err_gyear')); ok = false; }
+      }
+      if (s === 3 && !career) { showE('e-career', true, t('err_career')); ok = false; }
+      return ok;
+    }
+
+    function validateCareer() {
+      clrE(); let ok = true;
+      if (career === 'unemployed' && !v('if')) { showE('e-if', true, t('err_interest')); ok = false; }
+      if (career === 'employee') {
+        if (!v('jt')) { showE('e-jt', true, t('err_jt')); ok = false; }
+        if (!v('cn')) { showE('e-cn', true, t('err_cn')); ok = false; }
+        if (!document.querySelector('#expchips .chip.active')) { showE('e-exp', true, t('err_exp')); ok = false; }
+      }
+      if (career === 'business' && !v('bn')) { showE('e-bn', true, t('err_bn')); ok = false; }
+      if ((career === 'freelancer' || career === 'business') && !v('fi')) { showE('e-fi', true, t('err_fi')); ok = false; }
+      return ok;
+    }
+
+    /* ═══════ INLINE TIPS ═══════ */
+    function checkNameInput(el, tipId, errId) {
+      const val = el.value;
+      const tip = document.getElementById(tipId);
+      if (!tip) return;
+      if (val && /[\u0600-\u06FF]/.test(val)) {
+        // Arabic detected — show warning and strip
+        tip.textContent = lang === 'ar'
+          ? 'اكتب اسمك بالإنجليزية — مثال: AbdAlrhman'
+          : 'Write your name in English — e.g. AbdAlrhman';
+        tip.classList.add('show');
+        el.value = el.value.replace(/[\u0600-\u06FF]/g, '');
+      } else {
+        tip.classList.remove('show');
+      }
+      el.value = el.value.replace(/[^\x00-\x7F\-\_\.0-9 ]/g, '');
+    }
+
+    /* ═══════ PHONE SMART ═══════ */
+    function initPhone() {
+      const list = document.getElementById('pclist');
+      list.innerHTML = COUNTRIES.map((c2, i) =>
+        '<div class="pcl-item" onclick="pickCountry(' + i + ')">' +
+        '<span class="pci-flag">' + c2.f + '</span>' +
+        '<span class="pci-name">' + (lang === 'ar' ? (c2.na || c2.n) : c2.n) + '</span>' +
+        '<span class="pci-code">' + c2.c + '</span></div>'
+      ).join('');
+      document.addEventListener('click', () => {
+        const btn = document.getElementById('phone-country-btn');
+        const list2 = document.getElementById('pclist');
+        if (list2) { list2.style.display = 'none'; list2.classList.remove('show'); }
+        if (btn) btn.classList.remove('open');
+      });
+      // reposition on scroll/resize
+      window.addEventListener('scroll', () => {
+        const list = document.getElementById('pclist');
+        if (list && list.classList.contains('show')) positionDropdown();
+      }, { passive: true });
+      window.addEventListener('resize', () => {
+        const list = document.getElementById('pclist');
+        if (list && list.classList.contains('show')) positionDropdown();
+      });
+      updatePhonePrefix();
+    }
+
+    function positionDropdown() {
+      const btn = document.getElementById('phone-country-btn');
+      const list = document.getElementById('pclist');
+      if (!btn || !list) return;
+      const r = btn.getBoundingClientRect();
+      const isRTL = document.documentElement.dir === 'rtl';
+      list.style.top = (r.bottom + 6) + 'px';
+      if (isRTL) {
+        list.style.right = (window.innerWidth - r.right) + 'px';
+        list.style.left = 'auto';
+      } else {
+        list.style.left = r.left + 'px';
+        list.style.right = 'auto';
+      }
+      list.style.width = Math.max(r.width + 60, 240) + 'px';
+    }
+
+    function toggleCountryList(e) {
+      e.stopPropagation();
+      const list = document.getElementById('pclist');
+      const btn = document.getElementById('phone-country-btn');
+      const isOpen = list.style.display === 'block';
+      if (!isOpen) {
+        positionDropdown();
+        list.style.display = 'block';
+        list.classList.add('show');
+        if (btn) btn.classList.add('open');
+      } else {
+        list.style.display = 'none';
+        list.classList.remove('show');
+        if (btn) btn.classList.remove('open');
+      }
+    }
+
+    function updatePhonePrefix() {
+      const pf = document.getElementById('pflag');
+      const pn = document.getElementById('pcb-name');
+      const pp = document.getElementById('pcode-prefix');
+      const ph = document.getElementById('ph');
+      if (pf) pf.textContent = selCountry.f;
+      if (pn) pn.textContent = lang === 'ar' ? (selCountry.na || selCountry.n) : selCountry.n;
+      if (pp) pp.textContent = selCountry.c;
+      if (ph) ph.placeholder = selCountry.d;
+    }
+
+    function pickCountry(i) {
+      selCountry = COUNTRIES[i];
+      updatePhonePrefix();
+      const list = document.getElementById('pclist');
+      const btn = document.getElementById('phone-country-btn');
+      if (list) { list.style.display = 'none'; list.classList.remove('show'); }
+      if (btn) btn.classList.remove('open');
+      setTimeout(() => document.getElementById('ph').focus(), 50);
+    }
+
+    function getPhoneMax(code, currentVal) {
+      const rule = PHONE_RULES[code];
+      if (!rule) return 12;
+      if (rule.withZero !== undefined) {
+        // Egypt-style: if starts with 0, max is withZero, else withoutZero
+        if (currentVal.startsWith('0')) return rule.withZero;
+        return rule.withoutZero;
+      }
+      return rule.max;
+    }
+
+    function handlePhoneInput(inp) {
+      const list = document.getElementById('pclist');
+      const btn = document.getElementById('phone-country-btn');
+      if (list) { list.style.display = 'none'; list.classList.remove('show'); }
+      if (btn) btn.classList.remove('open');
+      const tip = document.getElementById('tip-ph');
+      let val = inp.value;
+
+      // التأكد إذا كان بيكتب عربي (حروف أو أرقام عربية ١٢٣)
+      if (/[\u0600-\u06FF]/.test(val) || /[\u0660-\u0669]/.test(val)) {
+        if (tip) {
+          tip.textContent = lang === 'ar' ? '💡 يرجى كتابة الأرقام بالإنجليزية — مثال: 010' : '💡 Please type numbers in English — e.g. 010';
+          tip.classList.add('show');
+        }
+        // مسح الحروف والأرقام العربية فوراً
+        val = val.replace(/[\u0600-\u06FF]/g, '').replace(/[\u0660-\u0669]/g, '');
+      } else {
+        if (tip) tip.classList.remove('show');
+      }
+
+      // إبقاء الأرقام الإنجليزية فقط
+      val = val.replace(/[^0-9]/g, '');
+
+      const mx = getPhoneMax(selCountry.c, val);
+      if (val.length > mx) val = val.slice(0, mx);
+
+      inp.value = val;
+      liveValidatePhone(val);
+    }
+
+    function liveValidatePhone(num) {
+      if (!num) { clearPhoneErr(); return; }
+      const res = validatePhoneNumber(num, selCountry.c);
+      const errEl = document.getElementById('e-ph');
+      const hintEl = document.getElementById('ph-hint');
+      if (!res.ok && num.length >= 4) {
+        // show hint, not hard error yet (hard error only on Next click)
+        if (errEl) errEl.classList.remove('show');
+        if (hintEl) { hintEl.textContent = '📱 ' + res.hint; hintEl.classList.add('show'); }
+      } else {
+        clearPhoneErr();
+        if (hintEl) hintEl.classList.remove('show');
+      }
+    }
+
+    function clearPhoneErr() {
+      const errEl = document.getElementById('e-ph');
+      if (errEl) errEl.classList.remove('show');
+    }
+
+    function liveValidateEmail(inp) {
+      const val = inp.value.trim();
+      const hintEl = document.getElementById('em-hint');
+      if (!val || !hintEl) return;
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (!valid && val.length > 4) {
+        hintEl.className = 'ferr show';
+        hintEl.textContent = lang === 'ar'
+          ? 'يبدو إن البريد مش صح — مثال: name@email.com'
+          : "Invalid email — e.g. name@email.com";
+        hintEl.style.display = 'block';
+      } else {
+        hintEl.style.display = 'none';
+        hintEl.classList.remove('show');
+      }
+    }
+
+    function liveValidateUrl(inp, hintId) {
+      const val = inp.value.trim();
+      const hintEl = document.getElementById(hintId);
+      if (!val || !hintEl) { if (hintEl) hintEl.style.display = 'none'; return; }
+      // Must start with http:// or https://
+      const valid = /^https?:\/\/.+\..+/.test(val);
+      if (!valid && val.length > 5) {
+        hintEl.className = 'ferr show';
+        hintEl.textContent = lang === 'ar'
+          ? 'الرابط مش صح — لازم يبدأ بـ https://'
+          : 'Invalid URL — must start with https://';
+        hintEl.style.display = 'block';
+      } else {
+        hintEl.style.display = 'none';
+      }
+    }
+
+    /* ═══════ CITY ═══════ */
+    function selCity(el) {
+      document.querySelectorAll('.city-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active'); city = el.dataset.val;
+      document.getElementById('otherCity').classList.toggle('show', city === 'other');
+    }
+
+    /* ═══════ CHIPS ═══════ */
+    function selChip(el, g) {
+      document.querySelectorAll('#' + g + ' .chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      const val = el.dataset.val;
+
+      /* generic other-box handler: looks for #<groupId>-other-box */
+      const otherBox = document.getElementById(g + '-other-box');
+      if (otherBox) otherBox.classList.toggle('show', val === 'other');
+
+      /* legacy sychips handler */
+      if (g === 'sychips') {
+        const syOther = document.getElementById('sy-other-field');
+        if (syOther) syOther.style.display = val === 'other' ? 'block' : 'none';
+      }
+
+      /* sync hidden ha input */
+      if (g === 'hachips') {
+        const ha = document.getElementById('ha');
+        if (ha) ha.value = val === 'other' ? 'other' : val;
+      }
+
+    }
+
+    /* ═══════ RADIO ═══════ */
+    function selRad(el, n, val) {
+      document.querySelectorAll('input[name="' + n + '"]').forEach(r => r.checked = false);
+      el.querySelector('input').checked = true;
+      document.querySelectorAll('#grp-' + n + ' .radio-item').forEach(i => i.classList.remove('active'));
+      el.classList.add('active');
+      if (n === 'edu') updEdu(val);
+    }
+
+    function updEdu(s) {
+      const mf = document.getElementById('majorf');
+      const syf = document.getElementById('syf');
+      const gyf = document.getElementById('gyf');
+      const syc = document.getElementById('sychips');
+
+      // إخفاء حقل التخصص فقط إذا كان المستخدم طالباً في المدرسة (ثانوي)
+      mf.style.display = (s === 'highschool') ? 'none' : 'block';
+
+      if (s === 'highschool') {
+        syf.style.display = 'block';
+        syc.innerHTML =
+          '<div class="chip" data-val="g10" onclick="selChip(this,\'sychips\')">Grade 10</div>' +
+          '<div class="chip" data-val="g11" onclick="selChip(this,\'sychips\')">Grade 11</div>' +
+          '<div class="chip" data-val="g12" onclick="selChip(this,\'sychips\')">Grade 12</div>' +
+          '<div class="chip" data-val="grad" onclick="selChip(this,\'sychips\')">' + t('grad_label') + '</div>' +
+          '<div class="chip" data-val="other" onclick="selChip(this,\'sychips\')">' + t('other_label') + '</div>';
+      } else if (s === 'university') {
+        syf.style.display = 'block';
+        syc.innerHTML =
+          '<div class="chip" data-val="l1" onclick="selChip(this,\'sychips\')">Level 1</div>' +
+          '<div class="chip" data-val="l2" onclick="selChip(this,\'sychips\')">Level 2</div>' +
+          '<div class="chip" data-val="l3" onclick="selChip(this,\'sychips\')">Level 3</div>' +
+          '<div class="chip" data-val="l4" onclick="selChip(this,\'sychips\')">Level 4</div>' +
+          '<div class="chip" data-val="l5" onclick="selChip(this,\'sychips\')">Level 5</div>' +
+          // خيار خريج الآن زر منفصل تماماً
+          '<div class="chip" data-val="grad" onclick="selChip(this,\'sychips\')">' + t('grad_label') + '</div>' +
+          // خيار أخرى هو الوحيد الذي سيفتح صندوق الكتابة
+          '<div class="chip" data-val="other" onclick="selChip(this,\'sychips\')">' + t('other_label') + '</div>';
+      }
+      else {
+        // في حال الماجستير والدكتوراه، نخفي حقل السنة الدراسية (لأنه غير مستخدم هنا)
+        syf.style.display = 'none';
+      }
+
+      // حقل سنة التخرج يظهر دائماً الآن لأن كل الخيارات المتبقية تتطلب سنة تخرج
+      gyf.style.display = 'block';
+    }
+
+    /* ═══════ CAREER ═══════ */
+    function selCareer(el) {
+      document.querySelectorAll('.ccard').forEach(c => c.classList.remove('active'));
+      el.classList.add('active'); career = el.dataset.val; showE('e-career', false);
+      const bn = document.getElementById('bnf'); const bl = document.getElementById('blf');
+      if (bn) bn.style.display = career === 'business' ? 'block' : 'none';
+      if (bl) bl.style.display = career === 'business' ? 'block' : 'none';
+    }
+
+    /* ═══════ UPLOAD ═══════ */
+    function prevUp(input, pid) {
+      const f = input.files[0]; if (!f) return;
+      if (f.size > 5 * 1024 * 1024) { toast(t('too_large'), 'err'); return; }
+      const r = new FileReader();
+      r.onload = e => {
+        const img = document.getElementById(pid);
+        if (img) { img.src = e.target.result; img.classList.add('show'); }
+        fd.nidB64 = e.target.result;
+      };
+      r.readAsDataURL(f);
+    }
+
+    /* ═══════ REVIEW ═══════ */
+    function buildReview() {
+      const eduMap = { highschool: t('edu_map_hs'), university: t('edu_map_uni'), masters: t('edu_map_ma'), phd: t('edu_map_phd'), none: t('edu_map_none') };
+      const carMap = { unemployed: t('car_map_none'), employee: t('car_map_emp'), freelancer: t('car_map_free'), business: t('car_map_biz') };
+      const cityV = { cairo: t('city_cairo'), giza: t('city_giza'), other: v('oc') }[city] || city;
+      const syv = getC('sychips') === 'other' ? v('sy-other') : getC('sychips');
+      const hearVal = getC('hachips') === 'other' ? v('ha-other') : getC('hachips');
+      let h = '';
+      h += rg(t('rev_basic'), [
+        [t('rev_name'), v('full-name')],
+        [t('rev_email'), v('em')],
+        [t('rev_phone'), selCountry.c + ' ' + v('ph')],
+        [t('rev_city'), cityV],
+        [t('rev_age'), getC('agechips')],
+        ...(hearVal ? [[t('rev_hear'), hearVal]] : []),
+        ...(v('sc') ? [[t('rev_code'), v('sc')]] : []),
+      ]);
+      const es = getR('edu');
+      let er = [[t('rev_edu_s'), eduMap[es] || es], [t('rev_school'), v('sn')]];
+      if (v('mj')) er.push([t('rev_major'), v('mj')]);
+      if (syv) er.push([t('rev_year'), syv]);
+      if (v('gy')) er.push([t('rev_grad'), v('gy')]);
+      h += rg(t('rev_edu'), er);
+      let cr = [[t('rev_career_s'), carMap[career] || career]];
+      if (career === 'unemployed') { cr.push([t('rev_int'), v('if')]); if (v('wf')) cr.push(['Why', v('wf')]); }
+      if (career === 'employee') { cr.push([t('rev_title'), v('jt')], [t('rev_comp'), v('cn')], [t('rev_exp'), getC('expchips')]); if (v('le')) cr.push(['LinkedIn', v('le')]); }
+      if (career === 'freelancer' || career === 'business') {
+        if (v('bn')) cr.push([t('rev_comp'), v('bn')]);
+        cr.push([t('rev_industry'), v('fi')]);
+        if (v('wb')) cr.push(['Why', v('wb')]);
+        if (v('lp')) cr.push(['LinkedIn', v('lp')]);
+        if (v('lb')) cr.push(['Co. LI', v('lb')]);
+      }
+      h += rg(t('rev_career'), cr);
+      document.getElementById('reviewContent').innerHTML = h;
+    }
+    function rg(title, rows) {
+      return '<div class="review-grp"><div class="review-grp-title">' + title + '</div>' +
+        rows.map(([k, val]) => '<div class="review-row"><div class="rkey">' + k + '</div><div class="rval">' + (val || '—') + '</div></div>').join('') + '</div>';
+    }
+
+    /* ═══════ SUBMIT ═══════ */
+    async function submit() {
+      const subBtn = document.getElementById('submit-btn');
+      if (subBtn) subBtn.disabled = true;
+
+      const ov = document.getElementById('lov');
+      ov.classList.add('show');
+      document.getElementById('ltxt').textContent = t('registering');
+
+      const syv = getC('sychips') === 'other' ? v('sy-other') : getC('sychips');
+      const payload = {
+        timestamp: new Date().toISOString(),
+        language: lang,
+        firstName: v('full-name').split(' ')[0],
+        lastName: v('full-name').split(' ').slice(1).join(' '),
+        fullName: v('full-name'),
+        email: v('em'),
+        phone: selCountry.c + v('ph'),
+        city: city === 'other' ? v('oc') : city,
+        ageRange: getC('agechips'),
+        hearAbout: getC('hachips') === 'other' ? v('ha-other') : getC('hachips'),
+        specialCode: v('sc'),
+        eduStatus: getR('edu'),
+        schoolName: v('sn'),
+        major: v('mj'),
+        studyYear: syv,
+        gradYear: v('gy'),
+        careerType: career,
+        jobTitle: v('jt'),
+        companyName: v('cn') || v('bn'),
+        experience: getC('expchips'),
+        industry: v('fi'),
+        interestField: v('if'),
+        whyField: v('wf') || v('wb'),
+        linkedinPersonal: v('le') || v('lp'),
+        linkedinCompany: v('lb'),
+        nationalIdBase64: fd.nidB64 || ''
+      };
+
+      try {
+        await sendToBackend(payload);
+
+        ov.classList.remove('show');
+        step = 6; updPg(6); show('step-6');
+
+        document.getElementById('cname').value = payload.fullName;
+        let pos = '';
+        if (career === 'employee') pos = payload.jobTitle + (payload.companyName ? ' @ ' + payload.companyName : '');
+        else if (career === 'freelancer') pos = 'Freelancer' + (payload.industry ? ' · ' + payload.industry : '');
+        else if (career === 'business') pos = 'Founder' + (payload.companyName ? ' @ ' + payload.companyName : '');
+        else if (career === 'unemployed') pos = payload.interestField || '';
+        document.getElementById('cpos').value = pos;
+
+        updateCard();
+        toast(t('reg_ok'), 'ok');
+
+      } catch (e) {
+        console.error("Submission Error:", e);
+        ov.classList.remove('show');
+        toast(t('err_retry'), 'err');
+        if (subBtn) subBtn.disabled = false;
+      }
+    }
+
+    /* ═══════ BACKEND — نقطة الإرسال الوحيدة ═══════ */
+    async function sendToBackend(payload) {
+      if (!CFG.GS_URL) throw new Error('CFG.GS_URL is not configured');
+      const fm = new FormData();
+      fm.append('data', JSON.stringify(payload));
+      const response = await fetch(CFG.GS_URL, {
+        method: 'POST',
+        body: fm
+      });
+      if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
+      return response;
+    }
+
+    /* ═══════ VIRAL CARD ═══════ */
+    /* ═══════ HTML CARD ═══════ */
+    function updateCard() {
+      const nm = document.getElementById('cname')?.value || 'YOUR NAME';
+      const pos = document.getElementById('cpos')?.value || '';
+      const nd = document.getElementById('sm-name-disp');
+      const rd = document.getElementById('sm-role-disp');
+      if (nd) nd.textContent = nm;
+      if (rd) {
+        if (pos && posVis) { rd.textContent = pos; rd.style.display = 'block'; }
+        else rd.style.display = 'none';
+      }
+    }
+
+    let cropData = { x: 0, y: 0, size: 0, img: null };
+
+    let baseImgW = 0, baseImgH = 0; // متغيرات لحفظ حجم الصورة الأساسي
+
+    function loadCardPhoto(input) {
+      const f = input.files[0];
+      if (!f) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const modal = document.getElementById('crop-modal');
+        const cropImg = document.getElementById('crop-img');
+        cropImg.src = e.target.result;
+        modal.style.display = 'flex';
+
+        cropImg.onload = function () {
+          // مساحة الدائرة 280 بيكسل
+          const vp = 280;
+          const ratio = Math.max(vp / cropImg.naturalWidth, vp / cropImg.naturalHeight);
+
+          baseImgW = cropImg.naturalWidth * ratio;
+          baseImgH = cropImg.naturalHeight * ratio;
+
+          cropImg.style.width = baseImgW + "px";
+          cropImg.style.height = baseImgH + "px";
+
+          // توسيط الصورة تلقائياً في البداية
+          cropImg.style.left = -((baseImgW - vp) / 2) + "px";
+          cropImg.style.top = -((baseImgH - vp) / 2) + "px";
+
+          // --- تفعيل الزوم بار ليعمل من منتصف "الدائرة" ---
+          const zSlider = document.getElementById('zoom-range');
+          if (zSlider) {
+            zSlider.value = 1; // إعادة المؤشر للبداية
+            zSlider.oninput = function (event) {
+              const scale = parseFloat(event.target.value);
+
+              const oldW = parseFloat(cropImg.style.width);
+              const newW = baseImgW * scale;
+              const newH = baseImgH * scale;
+
+              // حساب نسبة التكبير اللحظية
+              const scaleRatio = newW / oldW;
+
+              let currentL = parseFloat(cropImg.style.left) || 0;
+              let currentT = parseFloat(cropImg.style.top) || 0;
+
+              // مركز الدائرة بالضبط (280 تقسيم 2 = 140)
+              const centerX = vp / 2;
+              const centerY = vp / 2;
+
+              // المعادلة السحرية: تكبير/تصغير الصورة مع تثبيت النقطة التي في مركز الدائرة
+              let newL = centerX - (centerX - currentL) * scaleRatio;
+              let newT = centerY - (centerY - currentT) * scaleRatio;
+
+              // تطبيق الحجم والإحداثيات الجديدة
+              cropImg.style.width = newW + 'px';
+              cropImg.style.height = newH + 'px';
+              cropImg.style.left = newL + 'px';
+              cropImg.style.top = newT + 'px';
+
+              // التأكد إن الزوم ميعملش فراغات (وإذا وصل للحد يسحب الصورة للداخل)
+              checkBoundaries(cropImg);
+            };
+          }
+
+          makeDraggable(cropImg);
+        };
+      };
+      reader.readAsDataURL(f);
+      input.value = ''; // <--- هذا السطر الجديد يحل المشكلة
+
+    }
+
+
+    // هذه الدالة السحرية تمنع ظهور أي فراغات سوداء (Limits)
+    function checkBoundaries(el) {
+      const vp = 280;
+      let currentL = parseFloat(el.style.left) || 0;
+      let currentT = parseFloat(el.style.top) || 0;
+      let curW = parseFloat(el.style.width);
+      let curH = parseFloat(el.style.height);
+
+      if (currentL > 0) currentL = 0;
+      if (currentT > 0) currentT = 0;
+      if (currentL < vp - curW) currentL = vp - curW;
+      if (currentT < vp - curH) currentT = vp - curH;
+
+      el.style.left = currentL + "px";
+      el.style.top = currentT + "px";
+    }
+
+    function makeDraggable(el) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      el.onmousedown = dragMouseDown;
+      el.ontouchstart = dragMouseDown;
+
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+        pos4 = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+        document.onmouseup = closeDragElement;
+        document.ontouchend = closeDragElement;
+        document.onmousemove = elementDrag;
+        document.ontouchmove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        if (e.type === 'touchmove' && e.cancelable) e.preventDefault();
+        pos1 = pos3 - (e.clientX || (e.touches ? e.touches[0].clientX : 0));
+        pos2 = pos4 - (e.clientY || (e.touches ? e.touches[0].clientY : 0));
+        pos3 = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+        pos4 = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+
+        el.style.top = ((parseFloat(el.style.top) || 0) - pos2) + "px";
+        el.style.left = ((parseFloat(el.style.left) || 0) - pos1) + "px";
+
+        checkBoundaries(el); // نمنع الصورة من الخروج عن الدائرة أثناء السحب
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+        document.ontouchend = null;
+        document.ontouchmove = null;
+      }
+    }
+
+
+    function saveCrop() {
+      const cropImg = document.getElementById('crop-img');
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      canvas.width = 612;
+      canvas.height = 612;
+
+      const img = new Image();
+      img.src = cropImg.src;
+      img.onload = function () {
+        const vp = 280; // حجم نافذة الدائرة
+        const currentW = parseFloat(cropImg.style.width);
+        const ratio = img.naturalWidth / currentW; // حساب دقيق لنسبة التكبير
+
+        const leftVal = parseFloat(cropImg.style.left) || 0;
+        const topVal = parseFloat(cropImg.style.top) || 0;
+
+        // حساب الإحداثيات الدقيقة للقص من الصورة الأصلية
+        const sx = Math.abs(leftVal) * ratio;
+        const sy = Math.abs(topVal) * ratio;
+        const sWidth = vp * ratio;
+        const sHeight = vp * ratio;
+
+        ctx.drawImage(img, sx, sy, sWidth, sHeight, 0, 0, 612, 612);
+
+        const photoImg = document.getElementById('sm-photo-img');
+        photoImg.src = canvas.toDataURL('image/png');
+        photoImg.style.display = 'block';
+        document.getElementById('crop-modal').style.display = 'none';
+        cphoto = photoImg.src;
+      };
+    }
+
+
+    function togPos() {
+      posVis = !posVis;
+      const b = document.getElementById('ptog');
+      if (b) b.textContent = posVis ? t('card_hide') : t('card_show');
+      if (b) b.classList.toggle('off', !posVis);
+      updateCard();
+    }
+
+    function dlCard() {
+      const card = document.getElementById('sm-card');
+      if (!card) return;
+
+      toast(lang === 'ar' ? 'جاري التحميل...' : 'Downloading...', 'ok');
+
+      // احفظ نسبة التصغير الحالية عشان نرجع لها
+      const currentScale = card.style.transform;
+
+      // 1. رجّع الكارد لحجمها الضخم الحقيقي قبل التصوير
+      card.style.transform = 'scale(1)';
+
+      html2canvas(card, {
+        scale: 1, // جودة 100%
+        useCORS: true,
+        width: 2414,
+        height: 1080
+      }).then(canvas => {
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png', 1.0);
+        a.download = 'StarMindz_Attendee_Card.png';
+        a.click();
+
+        // 2. رجّع التصغير فوراً عشان المعاينة تفضل مظبوطة في الصفحة
+        card.style.transform = currentScale;
+        toast(t('dl_ok'), 'ok');
+      });
+    }
+
+
+
+    /* ═══════ TOAST ═══════ */
+    function toast(msg, type) {
+      const t2 = document.getElementById('toast');
+      t2.textContent = msg; t2.className = 'toast show ' + (type || '');
+      setTimeout(() => t2.classList.remove('show'), 3200);
+    }
+
+
+    /* ═══════ INIT ═══════ */
+    window.addEventListener('DOMContentLoaded', () => {
+      initPhone();
+      /* default Arabic selected in modal */
+      selectLangOpt('ar');
+      renderAll();
+    });
+
+    // ── switchLang: toggle lang on cover page ──
+    function switchLang() {
+      const newLang = lang === 'ar' ? 'en' : 'ar';
+      lang = newLang;
+      const html = document.documentElement;
+      html.lang = newLang;
+      html.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+      document.body.style.fontFamily = newLang === 'ar' ? "'IBM Plex Sans Arabic',sans-serif" : "'Syne',sans-serif";
+      // update cover date
+      const d = document.getElementById('cover-date');
+      if (d) d.textContent = newLang === 'ar' ? '24 أبريل 2026' : '24 April 2026';
+      renderAll();
+      // update start button
+      const sb = document.getElementById('start-btn-el');
+      if (sb) sb.textContent = t('start_btn');
+    }
+
+    // ── startForm: fade out cover then go to step 1 ──
+    function startForm() {
+      const cover = document.getElementById('step-cover');
+      cover.classList.add('fade-out');
+      setTimeout(() => {
+        cover.style.display = 'none';
+        cover.classList.remove('active', 'fade-out', 'anim-in');
+        step = 0;
+        _showLock = false;
+        toStep(1);
+      }, 360);
+    }
+
+    // patch: after renderAll, also update city chips and exp chips
+    const _origRenderAll = renderAll;
+    renderAll = function () {
+      _origRenderAll();
+      // city chips
+      document.querySelectorAll('.city-chip[data-t-chip]').forEach(el => {
+        el.textContent = t(el.getAttribute('data-t-chip'));
+      });
+      // rebuild country list in current lang
+      const pcl = document.getElementById('pclist');
+      if (pcl) pcl.innerHTML = COUNTRIES.map((c2, i) =>
+        '<div class="pcl-item" onclick="pickCountry(' + i + ')">' +
+        '<span class="pci-flag">' + c2.f + '</span>' +
+        '<span class="pci-name">' + (lang === 'ar' ? (c2.na || c2.n) : c2.n) + '</span>' +
+        '<span class="pci-code">' + c2.c + '</span></div>'
+      ).join('');
+      updatePhonePrefix();
+      // hear chips
+      document.querySelectorAll('#hachips .chip[data-t]').forEach(el => {
+        el.textContent = t(el.getAttribute('data-t'));
+      });
+      // exp chips
+      document.querySelectorAll('#expchips .chip[data-t]').forEach(el => {
+        el.textContent = t(el.getAttribute('data-t'));
+      });
+      // update start button
+      const sb = document.getElementById('start-btn-el');
+      if (sb) { sb.textContent = t('start_btn'); }
+    };
+
+
+
+    function updatePreviewScale() {
+      const wrapper = document.querySelector('.card-html-wrap');
+      const card = document.getElementById('sm-card');
+
+      if (wrapper && card) {
+        // نأخذ عرض الحاوية الحالي
+        const wrapperWidth = wrapper.getBoundingClientRect().width;
+
+        // إذا كان العرض لسه مظهرش (بصفر)، ننتظر ونحاول تاني
+        if (wrapperWidth === 0) {
+          setTimeout(updatePreviewScale, 50);
+          return;
+        }
+
+        const scale = wrapperWidth / 2414;
+
+        // تطبيق التصغير مع التأكد من نقطة الارتكاز
+        card.style.transformOrigin = "top left";
+        card.style.transform = `scale(${scale})`;
+
+        // تحديث ارتفاع الحاوية عشان ميبقاش فيه فراغ كبير تحتها
+        wrapper.style.height = (1080 * scale) + 'px';
+      }
+    }
+
+    // تشغيل الوظيفة فور تحميل الصفحة بالكامل لأول مرة
+    window.addEventListener('load', updatePreviewScale);
+    // وتشغيلها عند تغيير حجم الشاشة
+    window.addEventListener('resize', updatePreviewScale);
+
+    // --- دوال المشاركة على السوشيال ميديا ---
+    // دالة ذكية لتحويل الكارد إلى ملف حقيقي للمشاركة
+    async function getCardFile() {
+      const card = document.getElementById('sm-card');
+      const canvas = await html2canvas(card, { scale: 2, useCORS: true });
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+      return new File([blob], 'StarMindz_Attendee_Card.png', { type: 'image/png' });
+    }
+
+    // الدالة السحرية للمشاركة الشاملة (تعمل على الموبايل والمتصفحات الحديثة)
+    async function smartShare(platform) {
+      const caption = lang === 'ar'
+        ? "أنا سجلت في Star Mindz'26! حماسي كبير للمشاركة في أكبر حدث للمبدعين في مصر. 🚀✨ #StarMindz26"
+        : "I just registered for Star Mindz'26! Excited to join the biggest creators event in Egypt. 🚀✨ #StarMindz26";
+
+      // 1. محاولة المشاركة المتطورة (للموبايل فقط)
+      if (navigator.share && navigator.canShare) {
+        try {
+          const file = await getCardFile();
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: "Star Mindz'26",
+              text: caption
+            });
+            return; // نجحت المشاركة على الموبايل
+          }
+        } catch (err) { console.log("Mobile share failed, using fallback"); }
+      }
+
+      // 2. الحل الاحترافي للكمبيوتر (Desktop)
+      // أ- تحميل الصورة تلقائياً
+      dlCard();
+
+      // ب- نسخ النص الجاهز للـ Clipboard
+      try {
+        await navigator.clipboard.writeText(caption);
+        const msg = lang === 'ar'
+          ? "✅ تم تحميل الكارد ونسخ نص المنشور! ارفع الصورة الآن في فيسبوك واعمل (Paste)."
+          : "✅ Card downloaded & Caption copied! Just upload the image and hit (Paste).";
+        toast(msg, 'ok');
+      } catch (err) {
+        toast(lang === 'ar' ? "✅ تم تحميل الكارد بنجاح!" : "✅ Card downloaded!", 'ok');
+      }
+
+      // ج- فتح منصة التواصل الاجتماعي بعد ثانيتين
+      setTimeout(() => {
+        const url = encodeURIComponent(window.location.href);
+        if (platform === 'fb') window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        else if (platform === 'li') window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+      }, 2000);
+    }
+
+    // --- دالة إغلاق نافذة القص ---
+    function closeCrop() {
+      document.getElementById('crop-modal').style.display = 'none';
+    }
+
+    // دالة تحريك الزوم عن طريق الأزرار (+) و (-)
+    function btnZoom(delta) {
+      const slider = document.getElementById('zoom-range');
+      if (!slider) return;
+
+      // نحسب القيمة الجديدة (بين 1 و 3)
+      let newVal = parseFloat(slider.value) + delta;
+      if (newVal < 1) newVal = 1;
+      if (newVal > 3) newVal = 3;
+
+      slider.value = newVal;
+
+      // نخبر الصورة أن الحجم تغير (إطلاق أمر input برمجياً)
+      const event = new Event('input', { bubbles: true });
+      slider.dispatchEvent(event);
+    }
+
+    function checkYearInput(el, tipId) {
+      const val = el.value;
+      const tip = document.getElementById(tipId);
+
+      if (/[\u0600-\u06FF]/.test(val) || /[\u0660-\u0669]/.test(val)) {
+        if (tip) {
+          tip.textContent = lang === 'ar' ? '💡 يرجى كتابة السنة بالإنجليزية — مثال: 2026' : '💡 Please type year in English — e.g. 2026';
+          tip.classList.add('show');
+        }
+      } else {
+        if (tip) tip.classList.remove('show');
+      }
+
+      // تنظيف المدخلات (أرقام إنجليزية فقط وبحد أقصى 4 أرقام)
+      el.value = el.value.replace(/[\u0600-\u06FF]/g, '').replace(/[\u0660-\u0669]/g, '').replace(/[^0-9]/g, '').slice(0, 4);
+    }
+
+  </script>
+
+
+  <!-- Phone dropdown portal - renders at body level to escape stacking contexts -->
+  <div class="phone-country-list" id="pclist" style="position:fixed"></div>
+
+  <!-- نافذة الاقتصاص -->
+  <div id="crop-modal">
+    <div id="crop-card">
+      <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--white);" data-t="crop_title">
+      </div>
+      <div style="font-size: 13px; color: var(--gray); margin-bottom: 25px;" data-t="crop_instruction"></div>
+
+      <!-- منطقة الاقتصاص -->
+      <div id="crop-viewport">
+        <img id="crop-img" src="">
+      </div>
+
+      <!-- منطقة الزوم الجديدة بأزرار تفاعلية -->
+      <div class="zoom-wrap">
+        <button type="button" class="zoom-btn" onclick="btnZoom(-0.2)">−</button>
+        <input type="range" id="zoom-range" min="1" max="3" step="0.01" value="1">
+        <button type="button" class="zoom-btn" onclick="btnZoom(0.2)">+</button>
+      </div>
+
+      <!-- أزرار التحكم في القص -->
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 5px;">
+        <button type="button" class="btn btn-p" onclick="saveCrop()" data-t="crop_save"></button>
+        <button type="button" class="btn btn-danger" onclick="closeCrop()" data-t="crop_cancel"></button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
