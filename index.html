@@ -3411,9 +3411,35 @@
       if (f.size > 5 * 1024 * 1024) { toast(t('too_large'), 'err'); return; }
       const r = new FileReader();
       r.onload = e => {
-        const img = document.getElementById(pid);
-        if (img) { img.src = e.target.result; img.classList.add('show'); }
-        fd.nidB64 = e.target.result;
+        // ضغط الصورة لتقليل مساحة الـ Base64 وزيادة سرعة التسجيل
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let w = img.width;
+          let h = img.height;
+          const MAX_DIM = 800; // أقصى بعد للصورة
+          
+          if (w > h && w > MAX_DIM) {
+            h *= MAX_DIM / w;
+            w = MAX_DIM;
+          } else if (h > MAX_DIM) {
+            w *= MAX_DIM / h;
+            h = MAX_DIM;
+          }
+          
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          
+          // جودة 0.7 = 70% لتقليل المساحة وتسريع الـ Google Script
+          const compressedB64 = canvas.toDataURL('image/jpeg', 0.7);
+          
+          const displayImg = document.getElementById(pid);
+          if (displayImg) { displayImg.src = compressedB64; displayImg.classList.add('show'); }
+          fd.nidB64 = compressedB64;
+        };
+        img.src = e.target.result;
       };
       r.readAsDataURL(f);
     }
