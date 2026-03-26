@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STAR MINDZ'26 — Registration Form</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 0 L61.8 36.3 L100 36.3 L69.1 58.7 L80.9 95 L50 72.5 L19.1 95 L30.9 58.7 L0 36.3 L38.2 36.3 Z' fill='%2300E876'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1354,6 +1356,32 @@
       color: #ffffff;
     }
 
+    /* ── SITE LOGO ── */
+    .site-main-logo {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 0 4px;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .site-main-logo svg {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      fill: var(--accent);
+      filter: drop-shadow(0 0 10px rgba(0, 232, 118, 0.5));
+    }
+
+    .site-logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+
     /* ── SUCCESS ── */
     #step-success {
       padding: 40px 0;
@@ -2132,6 +2160,14 @@
   <div class="toast" id="toast"></div>
 
   <div class="form-wrapper">
+    <!-- SITE LOGO -->
+    <div class="site-main-logo" id="main-logo" style="display:none">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 0 L61.8 36.3 L100 36.3 L69.1 58.7 L80.9 95 L50 72.5 L19.1 95 L30.9 58.7 L0 36.3 L38.2 36.3 Z" />
+      </svg>
+      <div class="site-logo-text">STAR MINDZ</div>
+    </div>
+    
     <!-- PROGRESS -->
     <div class="pgbar-outer" id="pgbar" style="display:none">
       <div class="pgbar-inner">
@@ -2966,9 +3002,11 @@
 
     function updPg(s) {
       const b = document.getElementById('pgbar');
-      if (!s && s !== 1 || s === 6) { b.style.display = 'none'; return; }
-      if (s === 0) { b.style.display = 'none'; return; }
+      const l = document.getElementById('main-logo');
+      if (!s && s !== 1 || s === 6) { b.style.display = 'none'; if(l) l.style.display = 'none'; return; }
+      if (s === 0) { b.style.display = 'none'; if(l) l.style.display = 'none'; return; }
       b.style.display = 'block';
+      if(l) l.style.display = 'flex';
       const key = 'pg' + String(s).replace('-', '');
       document.getElementById('pglb').textContent = t(key) || '';
       document.getElementById('pgf').style.width = (PG_PCT[s] || 10) + '%';
